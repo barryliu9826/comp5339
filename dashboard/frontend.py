@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import asyncio
+from datetime import datetime, timedelta
 import json
 import logging
+import math
 import threading
 import time
 from typing import Any, Callable, Dict, Optional
@@ -13,7 +15,7 @@ import dash
 import dash_leaflet as dl
 import plotly.graph_objects as go
 import websockets
-from dash import dcc, html
+from dash import dcc, html, no_update
 from dash.dependencies import Input, Output, State
 from websockets.exceptions import WebSocketException
 
@@ -166,18 +168,23 @@ class FrontendStateManager:
 
 # ========== 市场状态管理器 ==========
 class MarketStateManager:
-    """管理前端市场指标状态."""
+    """管理前端市场指标状态（支持无限滚动时间序列）."""
     
-    def __init__(self) -> None:
-        """初始化市场状态管理器."""
+    def __init__(self, max_history: Optional[int] = None) -> None:
+        """
+        初始化市场状态管理器.
+        
+        Args:
+            max_history: 最大历史数据数量，None 表示无限滚动（推荐用于实时图表）
+        """
         # 存储格式: {network_code: {metric: [{"event_time": str, "value": float}]}}
         self._metrics: Dict[str, Dict[str, list]] = {}
-        # 保留最近的历史数据数量
-        self._max_history: int = 100
+        # 保留最近的历史数据数量，None 表示不限制（无限滚动）
+        self._max_history: Optional[int] = max_history
     
     def update_metric(self, network_code: str, metric: str, event_time: str, value: float) -> None:
         """
-        更新市场指标.
+        更新市场指标（支持无限滚动追加）.
         
         Args:
             network_code: 网络代码
@@ -191,12 +198,12 @@ class MarketStateManager:
         if metric not in self._metrics[network_code]:
             self._metrics[network_code][metric] = []
         
-        # 添加到历史记录
+        # 添加到历史记录（实时追加）
         history = self._metrics[network_code][metric]
         history.append({"event_time": event_time, "value": value})
         
-        # 限制历史数据数量
-        if len(history) > self._max_history:
+        # 仅在 max_history 不为 None 时限制历史数据数量
+        if self._max_history is not None and len(history) > self._max_history:
             history.pop(0)
     
     def update_metrics_batch(self, metrics: Dict[str, Dict[str, dict | list]]) -> None:
@@ -376,85 +383,233 @@ class WebSocketClient:
 # ========== UI 组件创建函数 ==========
 def create_market_chart(network_code: str = "NEM", metric: str = "price") -> dcc.Graph:
     """
-    创建市场指标图表组件.
+    创建实时滚动时间序列图表组件（固定窗口：最新50个数据点）.
     
     Args:
         network_code: 网络代码
         metric: 指标类型（如 "price", "demand"）
     
     Returns:
-        Dash Graph 组件
+        Dash Graph 组件（固定窗口显示最新50个数据点）
     """
     history = market_state_manager.get_metric_history(network_code, metric)
+    logger.debug(f"Creating chart: {network_code}/{metric}, history count: {len(history)}")
     
     if not history:
-        # 如果没有数据，显示空图表
+        # 如果没有数据，显示空图表（等待数据）
         fig = go.Figure()
         fig.add_annotation(
-            text="No data available",
+            text="等待数据中...<br><br>请确保：<br>1. MQTT发布器正在运行<br>2. 后端已连接MQTT代理<br>3. 市场数据正在发布",
             xref="paper",
             yref="paper",
             x=0.5,
             y=0.5,
             showarrow=False,
+            font=dict(size=12),
         )
         fig.update_layout(
-            title=f"{metric.capitalize()} - {network_code}",
+            title=f"{metric.capitalize()} - {network_code} (Latest 50 points)",
             xaxis_title="Time",
             yaxis_title=f"{metric.capitalize()}",
-            height=300,
+            height=400,
+            xaxis=dict(type="date", autorange=True),
+            yaxis=dict(autorange=True),
         )
         return dcc.Graph(id=f"market-chart-{network_code}-{metric}", figure=fig)
     
-    # 限制显示的数据点数量（最多显示最近 50 个点，实现滚动效果）
-    max_points = 50
-    if len(history) > max_points:
-        history = history[-max_points:]
+    # 固定窗口模式：只显示最新50个数据点（滑动窗口）
+    max_display_points = 50
+    if len(history) > max_display_points:
+        # 只保留最新50个数据点
+        display_history = history[-max_display_points:]
+        logger.debug(f"Displaying {max_display_points} points (out of {len(history)} total) for {network_code}/{metric}")
+    else:
+        display_history = history
+        logger.debug(f"Displaying {len(history)} points (less than {max_display_points}) for {network_code}/{metric}")
     
-    # 提取时间和值
-    times = [item["event_time"] for item in history]
-    values = [item["value"] for item in history]
+    # 提取时间和值（只显示最新50个点）
+    # 过滤掉无效值（nan, None等）
+    valid_data = [
+        (item["event_time"], item["value"])
+        for item in display_history
+        if item.get("value") is not None 
+        and not (isinstance(item["value"], float) and math.isnan(item["value"]))
+    ]
     
-    # 创建图表
+    if not valid_data:
+        # 如果没有有效数据，显示提示
+        logger.warning(f"⚠️  No valid data for chart: {network_code}/{metric} (all values are NaN or None)")
+        fig = go.Figure()
+        fig.add_annotation(
+            text="数据包含无效值<br>请检查数据源",
+            xref="paper",
+            yref="paper",
+            x=0.5,
+            y=0.5,
+            showarrow=False,
+            font=dict(size=14),
+        )
+        fig.update_layout(
+            title=f"{metric.capitalize()} - {network_code} (Data Error)",
+            xaxis_title="Time",
+            yaxis_title=f"{metric.capitalize()}",
+            height=400,
+        )
+        return dcc.Graph(id=f"market-chart-{network_code}-{metric}", figure=fig)
+    
+    times = [item[0] for item in valid_data]
+    values = [item[1] for item in valid_data]
+    
+    # 调试：验证数据格式
+    if times:
+        logger.info(f"📊 Chart data: {len(times)} valid points (filtered from {len(display_history)}), first: {times[0]}, last: {times[-1]}")
+        logger.info(f"📊 Chart values: min={min(values):.2f}, max={max(values):.2f}, avg={sum(values)/len(values):.2f}")
+    
+    # 计算X轴范围（固定窗口：基于最新50个数据点的时间范围）
+    # Plotly 的 range 参数对于 type="date" 的 X 轴，可以直接使用日期字符串或时间戳
+    try:
+        if len(times) > 1:
+            # 直接使用时间字符串（ISO 格式），Plotly 会自动解析
+            # 添加一些边距（10%的时间范围）
+            # 先解析时间戳计算边距
+            time_objects = []
+            for time_str in times:
+                try:
+                    # 尝试解析 ISO 格式时间戳
+                    dt = datetime.fromisoformat(time_str.replace("Z", "+00:00"))
+                    time_objects.append(dt)
+                except Exception:
+                    # 如果解析失败，跳过
+                    continue
+            
+            if len(time_objects) >= 2:
+                min_time = min(time_objects)
+                max_time = max(time_objects)
+                # 计算时间范围并添加10%边距
+                time_range = (max_time - min_time).total_seconds()
+                time_padding = time_range * 0.1 if time_range > 0 else 3600 * 0.1
+                
+                # 对于Plotly type="date"，range应该使用日期字符串或datetime对象
+                # 创建带边距的datetime对象
+                range_min = min_time - timedelta(seconds=time_padding)
+                range_max = max_time + timedelta(seconds=time_padding)
+                
+                # 使用ISO格式字符串作为range（Plotly会自动解析）
+                xaxis_range = [
+                    range_min.isoformat(),
+                    range_max.isoformat(),
+                ]
+                logger.info(f"📏 Calculated X-axis range: {len(display_history)} points, time range: {time_range:.0f}s, range: [{xaxis_range[0]}, {xaxis_range[1]}]")
+            else:
+                # 如果只有一个或没有有效时间点，使用自动范围
+                xaxis_range = None
+        elif len(times) == 1:
+            # 只有一个数据点，使用该点前后的时间范围
+            try:
+                dt = datetime.fromisoformat(times[0].replace("Z", "+00:00"))
+                # 使用当前时间点前后1小时作为范围
+                time_padding = timedelta(hours=1)  # 1小时
+                xaxis_range = [
+                    (dt - time_padding).isoformat(),
+                    (dt + time_padding).isoformat(),
+                ]
+            except Exception:
+                xaxis_range = None
+        else:
+            xaxis_range = None
+    except Exception as e:
+        logger.warning(f"Failed to calculate X-axis range: {e}, using autorange")
+        xaxis_range = None
+    
+    # 创建时间序列折线图
+    # 确保时间字符串格式正确（Plotly需要ISO格式）
+    formatted_times = []
+    for time_str in times:
+        try:
+            # 确保格式统一：ISO 8601格式
+            dt = datetime.fromisoformat(time_str.replace("Z", "+00:00"))
+            # 使用ISO格式字符串（Plotly会自动解析）
+            formatted_times.append(dt.isoformat())
+        except Exception:
+            # 如果解析失败，使用原始字符串
+            formatted_times.append(time_str)
+    
     fig = go.Figure()
     fig.add_trace(
         go.Scatter(
-            x=times,
+            x=formatted_times,  # 使用格式化后的时间字符串
             y=values,
             mode="lines+markers",
             name=metric,
             line=dict(color="#1f77b4", width=2),
-            marker=dict(size=4),
+            marker=dict(size=4, opacity=0.7),
+            hovertemplate="<b>%{fullData.name}</b><br>" +
+                         "Time: %{x}<br>" +
+                         "Value: %{y:.2f}<extra></extra>",
         )
     )
     
-    # 更新布局
+    logger.info(f"📈 Created chart with {len(formatted_times)} time points, {len(values)} value points")
+    
+    # 更新布局（固定窗口配置）
     unit = "($/MWh)" if metric == "price" else "(MW)"
+    
+    # 构建 X 轴配置
+    xaxis_config = dict(
+        type="date",  # 时间轴类型
+        automargin=True,  # 自动边距
+        rangeslider=dict(visible=False),  # 隐藏范围滑块
+        showspikes=True,  # 显示时间轴上的尖峰指示器
+        spikecolor="gray",
+        spikethickness=1,
+        fixedrange=False,  # 允许用户缩放查看（可选）
+    )
+    
+    # 使用自动范围（更可靠，Plotly会自动适应数据范围）
+    # 注释掉固定范围，使用autorange确保图表能正确显示
+    xaxis_config["autorange"] = True  # 自动范围（适应最新50个点的时间范围）
+    if xaxis_range is not None:
+        logger.info(f"📊 Calculated X-axis range but using autorange: [{xaxis_range[0]}, {xaxis_range[1]}]")
+    else:
+        logger.info(f"🔓 Using autorange for X-axis (no fixed range calculated)")
+    
     fig.update_layout(
-        title=f"{metric.capitalize()} - {network_code} {unit}",
+        title=f"{metric.capitalize()} - {network_code} {unit} (Latest {len(display_history)} points)",
         xaxis_title="Time",
         yaxis_title=f"{metric.capitalize()} {unit}",
-        height=300,
+        height=400,  # 增加图表高度，便于查看
         margin=dict(l=50, r=20, t=50, b=50),
         hovermode="x unified",
-        # 配置 x 轴，让最新数据始终显示
-        xaxis=dict(
-            rangeslider=dict(visible=False),
-            autorange=True,
-            # 让 x 轴自动适应数据范围，显示最新数据
-            automargin=True,
+        template="plotly_white",
+        # 固定窗口配置：X轴固定范围或自动范围（基于最新50个点）
+        xaxis=xaxis_config,
+        # 使用 uirevision 确保每次更新时视图重置到最新数据
+        # 使用最新数据点的时间戳作为 uirevision，确保新数据到来时视图重置
+        # 对于固定窗口，每次新数据到来时，最新数据点的时间戳会变化，从而重置视图
+        uirevision=(
+            display_history[-1].get("event_time", "") if display_history else ""
         ),
-        # 禁用缩放和平移，保持图表固定
-        dragmode=False,
+        # Y 轴自动调整范围
+        yaxis=dict(
+            autorange=True,  # 自动调整 Y 轴范围（基于显示的数据）
+            automargin=True,  # 自动边距
+            showspikes=True,  # 显示 Y 轴尖峰指示器
+            spikecolor="gray",
+            spikethickness=1,
+        ),
+        # 允许用户交互（缩放、平移），但视图会始终聚焦最新数据
+        dragmode="pan",  # 默认平移模式
     )
     
     return dcc.Graph(
         id=f"market-chart-{network_code}-{metric}",
         figure=fig,
         config={
-            "displayModeBar": True,
-            "scrollZoom": False,  # 禁用滚动缩放
-            "doubleClick": "reset",  # 双击重置
+            "displayModeBar": True,  # 显示工具栏
+            "displaylogo": False,  # 隐藏 Plotly 徽标
+            "scrollZoom": True,  # 启用滚动缩放（便于查看历史数据）
+            "doubleClick": "reset",  # 双击重置视图
+            "modeBarButtonsToRemove": ["lasso2d", "select2d"],  # 移除不需要的工具
         },
     )
 
@@ -741,7 +896,8 @@ app.title = "Electricity Facility Dashboard"
 
 # 初始化状态管理器
 state_manager = FrontendStateManager()
-market_state_manager = MarketStateManager()
+# 初始化市场状态管理器（无限滚动模式，支持实时追加）
+market_state_manager = MarketStateManager(max_history=None)
 
 # WebSocket 客户端
 websocket_client: WebSocketClient | None = None
@@ -776,10 +932,16 @@ def websocket_message_handler(message: dict) -> None:
         event_time = data.get("event_time")
         value = data.get("value")
         if network_code and metric and event_time and value is not None:
-            market_state_manager.update_metric(network_code, metric, event_time, value)
-            logger.debug(f"Updated market metric: {network_code}/{metric} = {value}")
+            # 检查值是否为NaN
+            if isinstance(value, float) and math.isnan(value):
+                logger.warning(f"⚠️  Received NaN value for {network_code}/{metric}, skipping update")
+            else:
+                market_state_manager.update_metric(network_code, metric, event_time, value)
+                # 验证数据是否已存储
+                history_count = len(market_state_manager.get_metric_history(network_code, metric))
+                logger.info(f"✓ Market data received: {network_code}/{metric} = {value} at {event_time} (history: {history_count} points)")
         else:
-            logger.warning(f"Invalid market_update message: network_code={network_code}, metric={metric}, event_time={event_time}, value={value}")
+            logger.warning(f"✗ Invalid market_update message: network_code={network_code}, metric={metric}, event_time={event_time}, value={value}")
     
     elif message_type == "initial_market_data":
         # 批量更新所有市场指标
@@ -788,7 +950,8 @@ def websocket_message_handler(message: dict) -> None:
             market_state_manager.update_metrics_batch(metrics)
             logger.info(f"Loaded initial market data: {len(metrics)} networks")
         else:
-            logger.warning("Received empty initial market data")
+            # 空数据是正常的（连接时可能还没有MQTT数据）
+            logger.debug("Received empty initial market data (this is normal if MQTT data hasn't arrived yet)")
 
 
 def setup_websocket_client() -> None:
@@ -859,103 +1022,113 @@ app.layout = html.Div(
         dcc.Store(id="display-mode-store", data="power"),
         dcc.Store(id="market-metrics-store", data={}),
         
-        # 主布局
-        html.Div(
-            [
-                # 左侧过滤面板
-                create_filter_panel(),
+        # 标题
+        html.H1("Electricity Facility Dashboard", style={"padding": "20px", "textAlign": "center"}),
+        
+        # 标签页容器
+        dcc.Tabs(
+            id="main-tabs",
+            value="tab-map",  # 默认选中地图视图
+            children=[
+                # 标签页1: 地图视图
+                dcc.Tab(
+                    label="地图视图",
+                    value="tab-map",
+                    children=html.Div(
+                        [
+                            # 地图视图布局
+                            html.Div(
+                                [
+                                    # 左侧过滤面板
+                                    create_filter_panel(),
+                                    
+                                    # 右侧地图区域
+                                    html.Div(
+                                        [
+                                            html.H2("Facilities Map", style={"padding": "10px"}),
+                                            
+                                            # 地图容器
+                                            html.Div(
+                                                [
+                                                    html.Div(
+                                                        id="map-container",
+                                                        children=create_map_component(center=NEM_REGION_CENTER),
+                                                        style={
+                                                            "width": "100%",
+                                                            "height": "100%",
+                                                            "position": "relative",
+                                                        },
+                                                    ),
+                                                ],
+                                                style={
+                                                    "width": "100%",
+                                                    "height": "calc(100vh - 200px)",
+                                                    "minHeight": "500px",
+                                                    "flexShrink": "0",
+                                                    "position": "relative",
+                                                },
+                                            ),
+                                        ],
+                                        style={"flex": "1", "position": "relative", "display": "flex", "flexDirection": "column"},
+                                    ),
+                                ],
+                                style={"display": "flex", "flexDirection": "row", "height": "calc(100vh - 150px)"},
+                            ),
+                        ],
+                        style={"padding": "10px"},
+                    ),
+                ),
                 
-                # 右侧主区域
-                html.Div(
-                    [
-                        html.H2("Electricity Facility Dashboard", style={"padding": "10px"}),
-                        
-                        # 地图区域
-                        html.Div(
-                            [
-                                html.Div(
-                                    id="map-container",
-                                    children=create_map_component(center=NEM_REGION_CENTER),
-                                    style={
-                                        "width": "100%",
-                                        "height": "100%",
-                                        "position": "relative",
-                                    },
-                                ),
-                            ],
-                            style={
-                                "width": "100%",
-                                "height": "50vh",
-                                "minHeight": "400px",
-                                "marginBottom": "20px",
-                                "flexShrink": "0",
-                                "position": "relative",
-                            },
-                        ),
-                        
-                        # 市场数据图表区域
-                        html.Div(
-                            [
-                                html.H3("Market Metrics", style={"padding": "10px", "marginBottom": "10px"}),
-                                
-                                # 指标选择
-                                html.Div(
-                                    [
-                                        html.Label("Metric:", style={"fontWeight": "bold", "marginRight": "10px"}),
-                                        dcc.Dropdown(
-                                            id="market-metric-selector",
-                                            options=[
-                                                {"label": "Price", "value": "price"},
-                                                {"label": "Demand", "value": "demand"},
-                                            ],
-                                            value="price",
-                                            style={"width": "200px", "display": "inline-block", "marginRight": "20px"},
-                                        ),
-                                        html.Label("Network:", style={"fontWeight": "bold", "marginRight": "10px"}),
-                                        dcc.Dropdown(
-                                            id="market-network-selector",
-                                            options=[
-                                                {"label": "NEM", "value": "NEM"},
-                                            ],
-                                            value="NEM",
-                                            style={"width": "200px", "display": "inline-block"},
-                                        ),
-                                    ],
-                                    style={"padding": "10px", "flexShrink": "0"},
-                                ),
-                                
-                                # 图表区域
-                                html.Div(
-                                    id="market-charts-container",
-                                    children=[],
-                                    style={
-                                        "width": "100%",
-                                        "height": "calc(100% - 80px)",
-                                        "minHeight": "300px",
-                                        "maxHeight": "calc(45vh - 80px)",
-                                        "overflowY": "hidden",
-                                        "overflowX": "hidden",
-                                        "position": "relative",
-                                    },
-                                ),
-                            ],
-                            style={
-                                "width": "100%",
-                                "height": "45vh",
-                                "minHeight": "400px",
-                                "maxHeight": "45vh",
-                                "padding": "10px",
-                                "display": "flex",
-                                "flexDirection": "column",
-                                "overflow": "hidden",
-                                "flexShrink": "0",
-                            },
-                        ),
-                    ],
-                    style={"flex": "1", "position": "relative", "display": "flex", "flexDirection": "column"},
+                # 标签页2: 市场图表
+                dcc.Tab(
+                    label="市场图表",
+                    value="tab-market",
+                    children=html.Div(
+                        [
+                            html.H2("Market Metrics", style={"padding": "20px", "textAlign": "center"}),
+                            
+                            # 指标选择器区域
+                            html.Div(
+                                [
+                                    html.Label("Metric:", style={"fontWeight": "bold", "marginRight": "10px"}),
+                                    dcc.Dropdown(
+                                        id="market-metric-selector",
+                                        options=[
+                                            {"label": "Price", "value": "price"},
+                                            {"label": "Demand", "value": "demand"},
+                                        ],
+                                        value="price",
+                                        style={"width": "200px", "display": "inline-block", "marginRight": "20px"},
+                                    ),
+                                    html.Label("Network:", style={"fontWeight": "bold", "marginRight": "10px"}),
+                                    dcc.Dropdown(
+                                        id="market-network-selector",
+                                        options=[
+                                            {"label": "NEM", "value": "NEM"},
+                                        ],
+                                        value="NEM",
+                                        style={"width": "200px", "display": "inline-block"},
+                                    ),
+                                ],
+                                style={"padding": "20px", "textAlign": "center"},
+                            ),
+                            
+                            # 图表区域
+                            html.Div(
+                                id="market-charts-container",
+                                children=[],
+                                style={
+                                    "width": "100%",
+                                    "height": "calc(100vh - 250px)",
+                                    "minHeight": "500px",
+                                    "padding": "20px",
+                                },
+                            ),
+                        ],
+                    ),
                 ),
             ],
-            style={"display": "flex", "flexDirection": "row", "height": "100vh"},
+            style={"width": "100%", "marginBottom": "20px"},
         ),
         
         # 定期更新组件（用于触发回调）
@@ -975,23 +1148,33 @@ app.layout = html.Div(
     Input("interval-component", "n_intervals"),
     Input("display-mode", "value"),
     State("facilities-store", "data"),
+    State("main-tabs", "value"),  # 添加标签页状态
 )
 def update_facilities_store(
     n_intervals: int,
     display_mode: str,
     current_store: dict,
+    current_tab: str,  # 当前选中的标签页
 ) -> tuple[dict, str]:
     """
     更新设施数据存储（从状态管理器读取）.
+    
+    仅在"地图视图"标签页激活时更新，以优化性能。
     
     Args:
         n_intervals: 间隔计数器
         display_mode: 显示模式
         current_store: 当前存储的数据
+        current_tab: 当前选中的标签页
     
     Returns:
         (更新后的设施数据, 显示模式)
     """
+    # 仅在地图视图标签页激活时更新设施数据
+    if current_tab != "tab-map":
+        # 如果不是地图视图，保持当前数据不变
+        return current_store or {}, display_mode or "power"
+    
     # 从状态管理器获取所有设施（应用过滤）
     facilities = state_manager.get_all_facilities()
     
@@ -1008,25 +1191,35 @@ def update_facilities_store(
     Input("display-mode-store", "data"),
     Input("filter-region", "value"),
     Input("filter-fuel-type", "value"),
+    State("main-tabs", "value"),  # 添加标签页状态
 )
 def update_map(
     facilities_store: dict,
     display_mode: str,
     filter_region: list | None,
     filter_fuel_type: list | None,
+    current_tab: str,  # 当前选中的标签页
 ) -> Any:
     """
     更新地图组件.
+    
+    仅在"地图视图"标签页激活时更新，以优化性能。
     
     Args:
         facilities_store: 设施数据存储
         display_mode: 显示模式
         filter_region: 区域过滤值
         filter_fuel_type: 燃料类型过滤值
+        current_tab: 当前选中的标签页
     
     Returns:
         更新的地图组件
     """
+    # 仅在地图视图标签页激活时更新地图
+    if current_tab != "tab-map":
+        # 如果不是地图视图，返回不更新
+        return no_update
+    
     # 更新过滤条件
     if filter_region is not None:
         state_manager.set_filters(regions=filter_region)
@@ -1075,27 +1268,47 @@ def update_status(facilities_store: dict) -> str:
     Input("market-metric-selector", "value"),
     Input("market-network-selector", "value"),
     Input("interval-component", "n_intervals"),
+    Input("main-tabs", "value"),  # 改为Input，切换标签页时触发更新
 )
 def update_market_charts(
     metric: str,
     network_code: str,
     n_intervals: int,
+    current_tab: str,  # 当前选中的标签页
 ) -> Any:
     """
-    更新市场数据图表.
+    更新市场数据图表（固定窗口：最新50个数据点）.
+    
+    该回调函数每秒触发一次（通过 interval-component），
+    重新渲染图表以显示最新的时间序列数据。
+    图表采用固定窗口模式，只显示最新50个数据点，实现滑动窗口效果。
+    仅在"市场图表"标签页激活时更新，以优化性能。
     
     Args:
-        metric: 指标类型
-        network_code: 网络代码
-        n_intervals: 间隔计数器
+        metric: 指标类型（如 "price", "demand"）
+        network_code: 网络代码（如 "NEM"）
+        n_intervals: 间隔计数器（用于触发更新）
+        current_tab: 当前选中的标签页
     
     Returns:
-        更新的图表组件
+        更新的图表组件（包含最新50个数据点）
     """
     if not metric or not network_code:
         return []
     
+    # 仅在图表视图标签页激活时更新图表
+    if current_tab != "tab-market":
+        # 如果不是图表视图，返回空组件（不显示图表）
+        logger.info(f"⏭️  Chart update skipped: current tab is '{current_tab}', not 'tab-market'")
+        return []  # 返回空组件，而不是no_update，确保切换标签页时能清除旧图表
+    
+    # 获取当前历史数据，用于调试
+    history = market_state_manager.get_metric_history(network_code, metric)
+    logger.info(f"🔄 Updating chart: {network_code}/{metric}, history count: {len(history)}, tab: {current_tab}, intervals: {n_intervals}")
+    
+    # 每次更新时重新创建图表，显示最新50个数据点（固定窗口）
     chart = create_market_chart(network_code=network_code, metric=metric)
+    logger.info(f"✅ Chart updated successfully: {network_code}/{metric}, data points: {len(history)}")
     return chart
 
 
