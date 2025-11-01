@@ -1,0 +1,20 @@
+# FastAPI Backend
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+websockets>=12.0
+pydantic>=2.0.0
+
+# MQTT
+paho-mqtt>=1.6.1
+
+# Dash Frontend
+dash>=2.14.0
+dash-leaflet>=0.1.2
+plotly>=5.18.0
+
+# Data Processing
+pandas>=2.1.0
+
+# Utilities
+python-dotenv>=1.0.0
+

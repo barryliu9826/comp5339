@@ -1,0 +1,20 @@
+2025-11-01 20:28:28,484 - __main__ - INFO - WebSocket client setup initiated
+Dash is running on http://0.0.0.0:8050/
+
+2025-11-01 20:28:28,485 - dash.dash - INFO - Dash is running on http://0.0.0.0:8050/
+
+ * Serving Flask app 'frontend'
+ * Debug mode: on
+2025-11-01 20:28:28,860 - __main__ - INFO - WebSocket client setup initiated
+2025-11-01 20:28:30,507 - __main__ - INFO - Connected to WebSocket server: ws://localhost:8000/ws/realtime
+2025-11-01 20:28:30,508 - __main__ - INFO - Loaded initial data: 1 facilities
+2025-11-01 20:28:30,508 - __main__ - WARNING - Received empty initial market data
+2025-11-01 20:28:30,895 - __main__ - INFO - Connected to WebSocket server: ws://localhost:8000/ws/realtime
+2025-11-01 20:28:30,895 - __main__ - INFO - Loaded initial data: 2 facilities
+2025-11-01 20:28:30,895 - __main__ - WARNING - Received empty initial market data
+2025-11-01 20:29:31,173 - __main__ - ERROR - WebSocket error: received 1012 (service restart); then sent 1012 (service restart)
+2025-11-01 20:29:31,173 - __main__ - INFO - Disconnected from WebSocket server
+2025-11-01 20:29:31,173 - __main__ - ERROR - WebSocket error: received 1012 (service restart); then sent 1012 (service restart)
+2025-11-01 20:29:31,173 - __main__ - INFO - Disconnected from WebSocket server
+/opt/anaconda3/lib/python3.12/multiprocessing/resource_tracker.py:254: UserWarning: resource_tracker: There appear to be 1 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
