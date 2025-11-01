@@ -1,0 +1,1916 @@
+{
+  "ADP": [
+    "ADPPV1",
+    "ADPPV2",
+    "ADPPV3",
+    "ADPBA1G",
+    "ADPBA1L",
+    "ADPBA1"
+  ],
+  "ALDGASF": [
+    "ALDGASF1"
+  ],
+  "AMCORGR": [
+    "AMCORGR"
+  ],
+  "ANGASTON": [
+    "ANGAS1",
+    "ANGAS2",
+    "ANGAST1"
+  ],
+  "APS": [
+    "APS"
+  ],
+  "APPIN": [
+    "APPIN"
+  ],
+  "ARWF": [
+    "ARWF1"
+  ],
+  "AVLSF": [
+    "AVLSF1"
+  ],
+  "AWABAREF": [
+    "AWABAREF"
+  ],
+  "DEIBDL": [
+    "BDL01",
+    "BDL02"
+  ],
+  "BAKING": [
+    "BAKING1"
+  ],
+  "BHWF": [
+    "BALDHWF1"
+  ],
+  "BALBESS": [
+    "BALBG1",
+    "BALB1",
+    "BALBL1"
+  ],
+  "BBASEHOS": [
+    "BBASEHOS"
+  ],
+  "BANGOWF": [
+    "BANGOWF1",
+    "BANGOWF2"
+  ],
+  "BAPS": [
+    "BAPS"
+  ],
+  "BANKSPT": [
+    "BANKSPT1"
+  ],
+  "BANNSP": [
+    "BANN1"
+  ],
+  "BARCALDN": [
+    "BARCALDN"
+  ],
+  "BARCSF": [
+    "BARCSF1"
+  ],
+  "BARKIPS": [
+    "BARKIPS1"
+  ],
+  "BARRON": [
+    "BARRON-1",
+    "BARRON-2"
+  ],
+  "BASTYAN": [
+    "BASTYAN"
+  ],
+  "BAYSW": [
+    "BW01",
+    "BW02",
+    "BW03",
+    "BW04"
+  ],
+  "BBDISEL1": [
+    "BBDISEL1"
+  ],
+  "BELLBAY": [
+    "BELLBAY2",
+    "BELLBAY1"
+  ],
+  "BBP31": [
+    "TVPP104",
+    "BBTHREE1",
+    "BBTHREE3",
+    "BBTHREE2"
+  ],
+  "BRYB1WF1": [
+    "BRYB2WF2",
+    "BRYB1WF1"
+  ],
+  "BERWICK": [
+    "BERWICK"
+  ],
+  "BERYLSF": [
+    "BERYLSF1"
+  ],
+  "BIALAWF": [
+    "GULLRWF2"
+  ],
+  "BLAYNEY": [
+    "BLAYNEY"
+  ],
+  "SNOWY6": [
+    "BLOWERNG",
+    "SNOWY6"
+  ],
+  "BLUEGSF": [
+    "BLUEGSF1"
+  ],
+  "BLULAKE": [
+    "BLULAKE1"
+  ],
+  "BLYTHB": [
+    "BLYTHB1",
+    "BLYTHB1G1",
+    "BLYTHB1L1"
+  ],
+  "BOCOROCK": [
+    "BOCORWF1"
+  ],
+  "BODWF": [
+    "BODWF1"
+  ],
+  "MCKAY": [
+    "MCKAY1",
+    "MCKAY2"
+  ],
+  "BOLIVAR": [
+    "BOWWBA1G",
+    "BOWWBA1",
+    "BOWWBA1L",
+    "BOWWPV1",
+    "BOLIVAR1"
+  ],
+  "BOLIVPS": [
+    "BOLIVPS1"
+  ],
+  "BOMENSF": [
+    "BOMENSF1"
+  ],
+  "0BCWF": [
+    "0BCWF1"
+  ],
+  "BBATTERY": [
+    "BBATTERY",
+    "BBATTERY1",
+    "BBATRYL1"
+  ],
+  "BRAEMARA": [
+    "BRAEMAR2",
+    "BRAEMAR1",
+    "BRAEMAR3"
+  ],
+  "B2PS": [
+    "BRAEMAR5",
+    "BRAEMAR7",
+    "BRAEMAR6"
+  ],
+  "BRNDBES": [
+    "BRNDBES1",
+    "BRNDBESG1",
+    "BRNDBESL1"
+  ],
+  "BROADMDW": [
+    "BROADMDW"
+  ],
+  "0BSSF": [
+    "0BSBESS1",
+    "0BSBESSL1",
+    "0BSBESSG1",
+    "0BSSF1"
+  ],
+  "BWTR1": [
+    "BWTR1"
+  ],
+  "BHILLGT": [
+    "GB01"
+  ],
+  "BROKENH": [
+    "BROKENH1"
+  ],
+  "BHB": [
+    "BHBL1",
+    "BHB1",
+    "BHBG1"
+  ],
+  "BROOKLYN": [
+    "BROOKLYN"
+  ],
+  "BROWNMT": [
+    "BROWNMT"
+  ],
+  "BPLANDF": [
+    "BPLANDF1"
+  ],
+  "0WELLINGTONBESS": [
+    "0BULABULB1",
+    "0BULABULG1",
+    "0BULABULL1"
+  ],
+  "BULGANA": [
+    "BULBES1",
+    "BULBESG1",
+    "BULBESL1",
+    "BULGANA1"
+  ],
+  "0BUNDSF": [
+    "0BUNDSF"
+  ],
+  "BNGSF1": [
+    "BNGSF1"
+  ],
+  "BNGSF2": [
+    "BNGSF2"
+  ],
+  "0BUNGAMA": [
+    "0BUNGAMABESS",
+    "0BUNGAMABESSL1",
+    "0BUNGAMABESSG1"
+  ],
+  "BDONGHYD": [
+    "BDONGHYD"
+  ],
+  "BURRIN": [
+    "BURRIN"
+  ],
+  "BUTLERSG": [
+    "BUTLERSG"
+  ],
+  "0CALBESS1": [
+    "0CALBESS1",
+    "0CALBESSL1",
+    "0CALBESSG1"
+  ],
+  "0CALBESS2": [
+    "0CALBESS2",
+    "0CALBESSL2",
+    "0CALBESSG2"
+  ],
+  "CALL_A": [
+    "CALL_A_2",
+    "CALL_A_4",
+    "CALL_A_1",
+    "CALL_A_3"
+  ],
+  "CALL_B": [
+    "CALL_B_2",
+    "CALL_B_1"
+  ],
+  "CALLIDEC1": [
+    "CPP_4",
+    "CPP_3"
+  ],
+  "CANUNDA1": [
+    "CNUNDAWF"
+  ],
+  "CAPBES": [
+    "CAPBES1L",
+    "CAPBES1G",
+    "CAPBES1"
+  ],
+  "CAPTL_WF": [
+    "CAPTL_WF"
+  ],
+  "CESF": [
+    "CESF1"
+  ],
+  "LI_WY_CA": [
+    "LI_WY_CA",
+    "CATAGUN1"
+  ],
+  "CATHROCK": [
+    "CATHROCK"
+  ],
+  "CTHLWF": [
+    "CTHLWF1"
+  ],
+  "CETHANA": [
+    "CETHANA"
+  ],
+  "CHALLWF": [
+    "CHALLHWF"
+  ],
+  "CHPSTWF": [
+    "CHPSTWF1"
+  ],
+  "CHYTWF": [
+    "CHYTWF1"
+  ],
+  "CHILDSF": [
+    "CHILDSF1"
+  ],
+  "CHBESS": [
+    "CHBESS1",
+    "CHBESSL1",
+    "CHBESSG1"
+  ],
+  "CBWWBA": [
+    "CBWWBA1G",
+    "CBWWBA1",
+    "CBWWPV1",
+    "CBWWBA1L",
+    "CBWWBG1",
+    "CBWWDG1",
+    "CBWWDG2",
+    "CBWWPV2"
+  ],
+  "CLARESF": [
+    "CLARESF1"
+  ],
+  "CLRKCWF": [
+    "CLRKCWF2",
+    "CLRKCWF1"
+  ],
+  "CLAYTON": [
+    "CLAYTON"
+  ],
+  "CLEMGPWF": [
+    "CLEMGPWF",
+    "0CLEMGPBESS",
+    "0CLEMGPBESSL1",
+    "0CLEMGPBESSG1"
+  ],
+  "CLERMSF": [
+    "CLERMSF1"
+  ],
+  "CLOVER": [
+    "CLOVER1",
+    "CLOVER2",
+    "CLOVER"
+  ],
+  "CLUNY": [
+    "CLUNY"
+  ],
+  "CODRGTON": [
+    "CODRNGTON"
+  ],
+  "COHUNSF1": [
+    "COHUNSF1"
+  ],
+  "COLEASF": [
+    "COLEASF1"
+  ],
+  "COLWF01": [
+    "COLWF01"
+  ],
+  "COLNSV": [
+    "COLNSV_5",
+    "COLNSV_1",
+    "COLNSV_2",
+    "COLNSV_3",
+    "COLNSV_4"
+  ],
+  "CSPVPS": [
+    "CSPVPS1"
+  ],
+  "COLONGRA": [
+    "CG3",
+    "CG2",
+    "CG1",
+    "CG4"
+  ],
+  "COLUMSF": [
+    "COLUMSF1"
+  ],
+  "CPSA": [
+    "CPSA"
+  ],
+  "CONDONG1": [
+    "CONDONG1"
+  ],
+  "CBWF": [
+    "CBWF1"
+  ],
+  "COOPGWF": [
+    "COOPGWF1"
+  ],
+  "COPTNHYD": [
+    "COPTNHYD"
+  ],
+  "CORIO": [
+    "CORIO1"
+  ],
+  "CRWASF1": [
+    "CRWASF1"
+  ],
+  "CROOKWEL": [
+    "CROOKWEL"
+  ],
+  "CROOKWF2": [
+    "CROOKWF2"
+  ],
+  "CROOKWF3": [
+    "CROOKWF3"
+  ],
+  "CROWLWF": [
+    "CROWLWF1"
+  ],
+  "CRURWF1": [
+    "CRURWF1"
+  ],
+  "CULCSF": [
+    "CUSF1"
+  ],
+  "CULLERIN": [
+    "CULLRGWF"
+  ],
+  "DAANDINE": [
+    "DAANDINE"
+  ],
+  "DALNTH": [
+    "DALNTH01",
+    "DALNTH1",
+    "DALNTHL1"
+  ],
+  "DDPS1": [
+    "DDPS1"
+  ],
+  "DDSF": [
+    "DDSF1"
+  ],
+  "DARLSF": [
+    "DARLSF1"
+  ],
+  "DPNTB": [
+    "DPNTBG1",
+    "DPNTB1",
+    "DPNTBL1"
+  ],
+  "DARTM": [
+    "DARTM1"
+  ],
+  "DAYDSF": [
+    "DAYDSF1"
+  ],
+  "DEVILS_G": [
+    "DEVILS_G"
+  ],
+  "DIAPURWF": [
+    "DIAPURWF1"
+  ],
+  "DRYCGT": [
+    "DRYCGT3",
+    "DRYCGT1",
+    "DRYCGT2"
+  ],
+  "DULAWF": [
+    "DULAWF1"
+  ],
+  "DUNDWF": [
+    "DUNDWF2",
+    "DUNDWF3",
+    "DUNDWF1"
+  ],
+  "PMATTAEP": [
+    "PMATTAEP"
+  ],
+  "EASTCRK": [
+    "EASTCRK"
+  ],
+  "EASTCRK2": [
+    "EASTCRK2"
+  ],
+  "EDENVSF": [
+    "EDENVSF1"
+  ],
+  "EILDON": [
+    "EILDON1",
+    "EILDON2"
+  ],
+  "EILDONPD": [
+    "EILDON3"
+  ],
+  "ELAINEWF": [
+    "ELAINWF1"
+  ],
+  "EMERASF": [
+    "EMERASF1"
+  ],
+  "ENERGYB": [
+    "MOR1",
+    "MOR2",
+    "MOR3"
+  ],
+  "ERARING": [
+    "ER01",
+    "ER02",
+    "ER03",
+    "ER04"
+  ],
+  "ERB": [
+    "ERBL01",
+    "ERBG01",
+    "ERB01"
+  ],
+  "ERGT01": [
+    "ERGT01"
+  ],
+  "0ERB2": [
+    "0ERB201",
+    "0ERB2L1",
+    "0ERB2G1"
+  ],
+  "FWF": [
+    "FNWF1",
+    "FSWF1"
+  ],
+  "FINLEYSF": [
+    "FINLYSF1"
+  ],
+  "FISHER": [
+    "FISHER"
+  ],
+  "FLYCRKWF": [
+    "FLYCRKWF"
+  ],
+  "0FULHAMSF": [
+    "0FULHAMSF1",
+    "0FULHAMB1",
+    "0FULHAML1",
+    "0FULHAMG1"
+  ],
+  "GANGARR": [
+    "GANGARR1"
+  ],
+  "GANNBESS": [
+    "GANNBL1",
+    "GANNBG1",
+    "GANNB1"
+  ],
+  "GANNSF": [
+    "GANNSF1"
+  ],
+  "GEORGTWN": [
+    "GEORGTN1",
+    "GEORGTN2"
+  ],
+  "GERMCRK": [
+    "GERMCRK"
+  ],
+  "GIRGSF": [
+    "GIRGSF"
+  ],
+  "GSTONE": [
+    "GSTONE4",
+    "GSTONE5",
+    "GSTONE3",
+    "GSTONE6",
+    "GSTONE1",
+    "GSTONE2"
+  ],
+  "GLBWNHYD": [
+    "GLBWNHYD"
+  ],
+  "0GLENELLEN": [
+    "0GLENELLEN"
+  ],
+  "GLENMAGG": [
+    "GLENMAG1"
+  ],
+  "GLENNCRK": [
+    "GLENNCRK"
+  ],
+  "GLENSF": [
+    "GLENSF1"
+  ],
+  "GLRWNSF": [
+    "GLRWNSF1"
+  ],
+  "0GNARWARREBESS": [
+    "0GNARWARREBESSB1",
+    "0GNARWARREBESSL1",
+    "0GNARWARREBESSG1"
+  ],
+  "GPWFEST": [
+    "GPWFEST3",
+    "GPWFEST2",
+    "GPWFEST1"
+  ],
+  "0GPWFWST": [
+    "0GPWFWST1"
+  ],
+  "GOONUMSF": [
+    "GOONSF1"
+  ],
+  "0GOORESF": [
+    "0GOORESF1"
+  ],
+  "GORDON": [
+    "GOVILLB1",
+    "GORDON"
+  ],
+  "0GRIVSF": [
+    "0GRIVBESS1",
+    "0GRIVBESSG1",
+    "0GRIVBESSL1",
+    "0GRIVSF1"
+  ],
+  "GSWF": [
+    "GSWF1A",
+    "GSWF1B1"
+  ],
+  "GRANGEAV": [
+    "GRANGEAV"
+  ],
+  "GRANWF": [
+    "GRANWF1"
+  ],
+  "GREENB": [
+    "GREENB1G1",
+    "GREENB1",
+    "GREENB1L1"
+  ],
+  "GRIFSF": [
+    "GRIFSF1"
+  ],
+  "GROSV1": [
+    "GROSV1"
+  ],
+  "GROSV2": [
+    "GROSV2"
+  ],
+  "GULLRGWF": [
+    "GULLRWF1",
+    "GULLRSF1"
+  ],
+  "GNNDHSF": [
+    "GNNDHSF1"
+  ],
+  "GUNNING": [
+    "GUNNING1"
+  ],
+  "0GUNSYNDSF": [
+    "0GUNSYNDSF"
+  ],
+  "SNOWY3": [
+    "GUTHEGA",
+    "SNOWY3"
+  ],
+  "HLMSEW01": [
+    "HLMSEW01"
+  ],
+  "HALAMRD": [
+    "HALAMRD1"
+  ],
+  "AGLHAL": [
+    "AGLHAL"
+  ],
+  "HALLWF": [
+    "HALLWF1"
+  ],
+  "HALLWF2": [
+    "HALLWF2"
+  ],
+  "HAMISF": [
+    "HAMISF1"
+  ],
+  "HAMPTON": [
+    "HAMPTON"
+  ],
+  "HVWW": [
+    "HVWWBA1G",
+    "HVWWPV1",
+    "HVWWBA1",
+    "HVWWBA1L"
+  ],
+  "HASTING": [
+    "HASTINGS1",
+    "HASTINGS2",
+    "HASTINGS3"
+  ],
+  "HAUGHT1": [
+    "HAUGHT11"
+  ],
+  "HD1WF": [
+    "HD1WF1"
+  ],
+  "HAYMSF": [
+    "HAYMSF1"
+  ],
+  "HAZEL": [
+    "HWPS1",
+    "HWPS2",
+    "HWPS4",
+    "HWPS5",
+    "HWPS6",
+    "HWPS7",
+    "HWPS8",
+    "HWPS3"
+  ],
+  "HBESS": [
+    "HBESS1",
+    "HBESSL1",
+    "HBESSG1"
+  ],
+  "HEPWIND": [
+    "HEPWIND1"
+  ],
+  "HIGHBRY": [
+    "HIGHBRY1"
+  ],
+  "HILLSTN": [
+    "HILLSTN1"
+  ],
+  "HORNSDAL": [
+    "HDWF1"
+  ],
+  "HORNSDAL2": [
+    "HDWF2"
+  ],
+  "HORNSDAL3": [
+    "HDWF3"
+  ],
+  "HORNSDPR": [
+    "HPRL1",
+    "HPR1",
+    "HPRG1"
+  ],
+  "0HORSHAMSF": [
+    "0HORSHAMB1",
+    "0HORSHAML1",
+    "0HORSHAMG1",
+    "0HORSHAMSF"
+  ],
+  "HUGSF": [
+    "HUGSF1"
+  ],
+  "HUMENSW": [
+    "HUMENSW"
+  ],
+  "HUMEV": [
+    "HUMEV"
+  ],
+  "HUNTER": [
+    "HUNTER1",
+    "HUNTER2"
+  ],
+  "HEZ": [
+    "HEZ",
+    "HEZ1"
+  ],
+  "HUNTVGT": [
+    "HVGTS"
+  ],
+  "INVICTA": [
+    "INVICTA"
+  ],
+  "ICSM": [
+    "ICSM"
+  ],
+  "JACKSGUL": [
+    "JACKSGUL"
+  ],
+  "JEERA": [
+    "JLA02",
+    "JLA03",
+    "JLA01",
+    "JLA04"
+  ],
+  "JEERB": [
+    "JLB01",
+    "JLB02",
+    "JLB03"
+  ],
+  "JEMALNG1": [
+    "JEMALNG1"
+  ],
+  "JNDSHPS": [
+    "JNDABNE1"
+  ],
+  "SNWYGJP2": [
+    "SNWYGJP2",
+    "SNOWYGJP"
+  ],
+  "JBUTTERS": [
+    "JBUTTERS"
+  ],
+  "JOUNAMA": [
+    "JOUNAMA1"
+  ],
+  "JUNEESF": [
+    "JUNEESF1"
+  ],
+  "KABANWF": [
+    "KABANWF1"
+  ],
+  "KARSF": [
+    "KARSF1"
+  ],
+  "KAREEYA": [
+    "KAREEYA4",
+    "KAREEYA3",
+    "KAREEYA5",
+    "KAREEYA2",
+    "KAREEYA1"
+  ],
+  "KEEPIT": [
+    "KEEPIT"
+  ],
+  "AGLSITA": [
+    "AGLSITA1"
+  ],
+  "KENNEDY": [
+    "KEPSF1",
+    "KEPBG1",
+    "KEPBL1",
+    "KEPWF1"
+  ],
+  "KERNGSP": [
+    "KERNGSP1"
+  ],
+  "KIAMSF1": [
+    "KIAMSF1"
+  ],
+  "KIATAWF": [
+    "KIATAWF1"
+  ],
+  "0KIDSTON": [
+    "0KIDSTON"
+  ],
+  "KSP1": [
+    "KSP1"
+  ],
+  "KINCUMB": [
+    "KINCUM1"
+  ],
+  "KINGASF": [
+    "KINGASF1"
+  ],
+  "KOGANCK": [
+    "KPP_1"
+  ],
+  "KOOLKHAN": [
+    "KKGTS"
+  ],
+  "KESS1": [
+    "KESSL1",
+    "KESSG1",
+    "KESSB1"
+  ],
+  "KRCCOGEN": [
+    "KRCCOGEN"
+  ],
+  "LADBROKE": [
+    "LADBROK1",
+    "LADBROK2"
+  ],
+  "LBBESS": [
+    "LBB1",
+    "LBBL1",
+    "LBBG1"
+  ],
+  "LKBONNY1": [
+    "LKBONNY1"
+  ],
+  "LKBONNY_2": [
+    "LKBONNY2"
+  ],
+  "LKBONNY3": [
+    "LKBONNY3"
+  ],
+  "LK_ECHO": [
+    "LK_ECHO"
+  ],
+  "0LANCSF": [
+    "0LANCSF1"
+  ],
+  "LVES": [
+    "LVESG1",
+    "LVESL1",
+    "LVES1"
+  ],
+  "LNGS": [
+    "LNGS1",
+    "LAVNORTH",
+    "LNGS2"
+  ],
+  "LEM_WIL": [
+    "LEM_WIL"
+  ],
+  "0LIDDELLBESS": [
+    "0LIDDELLBESSG1",
+    "0LIDDELLBESSL1",
+    "0LIDDELLBESS1"
+  ],
+  "LIDDELL": [
+    "LD03",
+    "LD04",
+    "LD02",
+    "LD01"
+  ],
+  "LILYVASF": [
+    "LILYSF1"
+  ],
+  "0LCNBESS": [
+    "0LCNBESS1",
+    "0LCNBESSL1",
+    "0LCNBESSG1"
+  ],
+  "LIMBESS": [
+    "LIMBESSL1",
+    "LIMBESS1",
+    "LIMBESSG1"
+  ],
+  "LIMOSF1": [
+    "LIMOSF11"
+  ],
+  "LIMOSF2": [
+    "LIMOSF21"
+  ],
+  "LGAPWF1": [
+    "LGAPWF1",
+    "LGAPWF2"
+  ],
+  "0LOCKHART": [
+    "0LOCKHARTSF",
+    "0LOCKHARTBESS",
+    "0LOCKHARTBESSG1",
+    "0LOCKHARTBESSL1"
+  ],
+  "LONGFORD": [
+    "LONGFORD"
+  ],
+  "LRSF": [
+    "LRSF1"
+  ],
+  "LONSDALE": [
+    "LONSDALE"
+  ],
+  "0LOTUSCRKWF": [
+    "0LOTUSCRKWF"
+  ],
+  "LOYYANGA": [
+    "LYA1",
+    "LYA3",
+    "LYA4",
+    "LYA2"
+  ],
+  "LOYYB": [
+    "LOYYB2",
+    "LOYYB1"
+  ],
+  "LUCASHGT": [
+    "LUCASHGT"
+  ],
+  "LUCAS2S2": [
+    "LUCAS2S2"
+  ],
+  "MACARTH": [
+    "MACARTH1"
+  ],
+  "MCINTYR": [
+    "MCINTYR1"
+  ],
+  "MACKAY": [
+    "MACKAYGT"
+  ],
+  "MACKNTSH": [
+    "MACKNTSH"
+  ],
+  "MANSLR": [
+    "MANSLR1"
+  ],
+  "MANNUMB": [
+    "MANNUMBG1",
+    "MANNUMBL1",
+    "MANNUMB1"
+  ],
+  "MANNSF": [
+    "MANNSF2"
+  ],
+  "MAPS2": [
+    "MAPS2PV1",
+    "MAPS3PV1"
+  ],
+  "MAROOWF1": [
+    "MAROOWF1"
+  ],
+  "MARYRSF": [
+    "MARYRSF1"
+  ],
+  "0MARYVALE": [
+    "0MVSOLAR1",
+    "0MVBESS1",
+    "0MVBESSG1",
+    "0MVBESSL1"
+  ],
+  "MEADOWBK": [
+    "MEADOWBK",
+    "MEADOWB2"
+  ],
+  "0MREH": [
+    "MREHAG1",
+    "MREHA1",
+    "MREHAL1"
+  ],
+  "0MREHA2": [
+    "MREHA2",
+    "MREHAL2",
+    "MREHAG2"
+  ],
+  "MREHA3": [
+    "MREHA3",
+    "MREHAL3",
+    "MREHAG3"
+  ],
+  "METZSF": [
+    "METZSF1"
+  ],
+  "MIDDLSF1": [
+    "MIDDLSF1"
+  ],
+  "MIDLDPS": [
+    "MIDLDPS1"
+  ],
+  "MILLMERN": [
+    "MPP_1",
+    "MPP_2"
+  ],
+  "MINTARO": [
+    "MINTARO",
+    "MINTNL1"
+  ],
+  "MOKOSF": [
+    "MOKOSF1"
+  ],
+  "MOLNGSF1": [
+    "MOLNGSF1"
+  ],
+  "MOORAWF1": [
+    "MOORAWF1"
+  ],
+  "MORANBAH": [
+    "MORANBAH"
+  ],
+  "MBAHNTH": [
+    "MBAHNTH"
+  ],
+  "MOREESF": [
+    "MOREESF1"
+  ],
+  "MWPS": [
+    "MWPS1PV1",
+    "MWPS4PV1",
+    "MWPS2PV1",
+    "MWPS3PV1"
+  ],
+  "0MORNBESS": [
+    "0MORNBESS1",
+    "0MORNBESSL1",
+    "0MORNBESSG1"
+  ],
+  "MORNW": [
+    "MORNW"
+  ],
+  "0MRTLKBESS": [
+    "0MRTLKBESS",
+    "0MRTLKBESSL1",
+    "0MRTLKBESSG1"
+  ],
+  "MORTLK": [
+    "MORTLK11",
+    "MORTLK12"
+  ],
+  "MRTLSWF": [
+    "MRTLSWF1"
+  ],
+  "MLWF": [
+    "MLWF1"
+  ],
+  "MOUSF": [
+    "MOUSF1"
+  ],
+  "MEWF": [
+    "MEWF1"
+  ],
+  "MTGELWF": [
+    "MTGELWF1"
+  ],
+  "MTMERCER": [
+    "MERCER01"
+  ],
+  "MTMILLAR": [
+    "MTMILLAR"
+  ],
+  "MP": [
+    "MP1",
+    "MP2"
+  ],
+  "MSTUART": [
+    "MSTUART3",
+    "MSTUART1",
+    "MSTUART2"
+  ],
+  "MLLFGEF": [
+    "MLLFGEF1"
+  ],
+  "MLSP": [
+    "MLSP1"
+  ],
+  "MM": [
+    "MM4",
+    "MM3"
+  ],
+  "MUCRKSF": [
+    "MUCRKSF1"
+  ],
+  "MUWAWF": [
+    "MUWAWF2",
+    "MUWAWF1"
+  ],
+  "MURRAY": [
+    "MURRAY"
+  ],
+  "MBPS2": [
+    "MBPS2PV1"
+  ],
+  "MUSSELRO": [
+    "MUSSELR1"
+  ],
+  "NASF": [
+    "NASF1"
+  ],
+  "NEVERSF": [
+    "NEVERSF1"
+  ],
+  "NEWENSF": [
+    "NEWENSF2",
+    "0NEWENBESS1",
+    "0NEWENBESSL1",
+    "0NEWENBESSG1",
+    "NEWENSF1"
+  ],
+  "NEWPORT": [
+    "NPS"
+  ],
+  "NBHWF": [
+    "NBHWF1"
+  ],
+  "NORTHGT": [
+    "NGTS"
+  ],
+  "NORTHP": [
+    "NPS2",
+    "NPS1",
+    "NPSNL1",
+    "NPSNL2"
+  ],
+  "NUMURKSF": [
+    "NUMURSF1"
+  ],
+  "NYNGAN": [
+    "NYNGAN1"
+  ],
+  "OAKEY": [
+    "OAKEY1",
+    "OAKEY2"
+  ],
+  "OAKEY2SF": [
+    "OAKEY2SF"
+  ],
+  "OAKEY1SF": [
+    "OAKEY1SF"
+  ],
+  "OAKLAND": [
+    "OAKLAND1"
+  ],
+  "OCPS": [
+    "OAKYCREK"
+  ],
+  "OAKY2": [
+    "OAKY2"
+  ],
+  "0ORANABESS": [
+    "0ORANAB1",
+    "0ORANAL1",
+    "0ORANAG1"
+  ],
+  "OSBORNE": [
+    "OSB-AG",
+    "OSB01",
+    "OSB02"
+  ],
+  "PALOONA": [
+    "PALOONA"
+  ],
+  "PSF": [
+    "PARSF1"
+  ],
+  "PEDLER": [
+    "PEDLER1"
+  ],
+  "NPPPPS": [
+    "PPCCGT"
+  ],
+  "PIBESS": [
+    "PIBESSG1",
+    "PIBESSL1",
+    "PIBESS1"
+  ],
+  "PINDARI": [
+    "PINDARI"
+  ],
+  "PIONEER": [
+    "PIONEER"
+  ],
+  "PLAYF": [
+    "PLAYFB2",
+    "PLAYFB3",
+    "PLAYFB4",
+    "PLAYB-AG",
+    "PLAYFB1"
+  ],
+  "PTINA": [
+    "PO110NL1",
+    "POAT220",
+    "POAT110"
+  ],
+  "PAREPW": [
+    "PAREPS1",
+    "PAREPW1"
+  ],
+  "0PLWF": [
+    "0PLWF1"
+  ],
+  "PORTLATT": [
+    "PORTLAT1"
+  ],
+  "PORTLCN": [
+    "POR01",
+    "POR03"
+  ],
+  "STANVAC": [
+    "STANV2",
+    "PTSTAN1",
+    "STANV1"
+  ],
+  "PORTWF": [
+    "PORTWF"
+  ],
+  "QUARANTN": [
+    "QPS5",
+    "QPS2",
+    "QPS3",
+    "QPS1",
+    "QPS4"
+  ],
+  "QUERIVER": [
+    "QUERIVE1"
+  ],
+  "QBYNB": [
+    "QBYNB1",
+    "QBYNBL1",
+    "QBYNBG1"
+  ],
+  "QP": [
+    "QPSF",
+    "QPBESS",
+    "QPBESSL1",
+    "QPBESSG1"
+  ],
+  "RACOMIL": [
+    "RACOMIL1"
+  ],
+  "RANGEB": [
+    "RANGEB1L1",
+    "RANGEB1G1",
+    "RANGEB1"
+  ],
+  "REDBANK1": [
+    "REDBANK1"
+  ],
+  "REECE": [
+    "REECE1",
+    "REECE2"
+  ],
+  "REMOUNT": [
+    "REMOUNT"
+  ],
+  "REPULSE": [
+    "REPULSE"
+  ],
+  "0RIVERINASF": [
+    "0RIVERINASF"
+  ],
+  "RESS": [
+    "RESS1",
+    "RESS1L",
+    "RESS1G"
+  ],
+  "RIVNB": [
+    "RIVNB2",
+    "RIVNBL2",
+    "RIVNBG2"
+  ],
+  "ROCHEDAL": [
+    "ROCHEDAL"
+  ],
+  "RPCG": [
+    "RPCG"
+  ],
+  "EDLRGNRD": [
+    "EDLRGNRD"
+  ],
+  "ROMA": [
+    "ROMA_8",
+    "ROMA_7"
+  ],
+  "RRSF": [
+    "RRSF1"
+  ],
+  "ROWALLAN": [
+    "ROWALLAN"
+  ],
+  "ROYALLA": [
+    "ROYALLA1"
+  ],
+  "RUBICON": [
+    "RUBICON"
+  ],
+  "RUGBYR": [
+    "RUGBYR1"
+  ],
+  "RYANCWF": [
+    "RYANCWF1"
+  ],
+  "RYEPARK": [
+    "RYEPARK1"
+  ],
+  "SALTCRK": [
+    "SALTCRK1"
+  ],
+  "SAPHWF1": [
+    "SAPHWF1"
+  ],
+  "SEBSF": [
+    "SEBSF1"
+  ],
+  "SHEP1": [
+    "SHEP1"
+  ],
+  "SHOALHAV": [
+    "SHPUMP",
+    "SHGEN"
+  ],
+  "SHOAL": [
+    "SHOAL1"
+  ],
+  "STWF": [
+    "STWF1"
+  ],
+  "SITHE": [
+    "SITHE01"
+  ],
+  "SMTHBES1": [
+    "SMTHBES1L1",
+    "SMTHBES1G1",
+    "SMTHBES1"
+  ],
+  "SNAPPER": [
+    "SNAPPER1"
+  ],
+  "SNOWTOWN": [
+    "SNOWTWN1"
+  ],
+  "SNOWNTH": [
+    "SNOWNTH1"
+  ],
+  "SNOWSTH": [
+    "SNOWSTH1"
+  ],
+  "SNOWY4": [
+    "SNOWY4"
+  ],
+  "SNOWY5": [
+    "SNOWY5"
+  ],
+  "0SNOWY20": [
+    "0SNOWY201",
+    "0SNOWY202"
+  ],
+  "SNUG": [
+    "SNUG1",
+    "SNUG2",
+    "SNUG3",
+    "SNUGNL1"
+  ],
+  "AGLSOM": [
+    "AGLSOM"
+  ],
+  "SKSF": [
+    "SKSF1"
+  ],
+  "STHBKTEC": [
+    "STHBKTEC"
+  ],
+  "SVALE": [
+    "SVALE1"
+  ],
+  "STGEORGE": [
+    "STGEORG1"
+  ],
+  "SLDCBLK": [
+    "SLDCBLK1"
+  ],
+  "0STANBESS": [
+    "0STANBESS1",
+    "0STANBESSL1",
+    "0STANBESSG1"
+  ],
+  "STANWELL": [
+    "STAN-4",
+    "STAN-2",
+    "STAN-3",
+    "STAN-1"
+  ],
+  "STAPYLTON": [
+    "STAPYLTON1"
+  ],
+  "STARFHILL": [
+    "STARHLWF"
+  ],
+  "STOCKYD": [
+    "STOCKYD1"
+  ],
+  "STUBSF": [
+    "STUBSF2",
+    "STUBSF1"
+  ],
+  "0SUMMFBESS": [
+    "0SUMMFBESS1",
+    "0SUMMFBESSL1",
+    "0SUMMFBESSG1"
+  ],
+  "SMCSF": [
+    "SMCSF1"
+  ],
+  "SUNCOAST": [
+    "SUNCOAST"
+  ],
+  "SUNRSF1": [
+    "SUNRSF1"
+  ],
+  "VALDORA": [
+    "VALDORA1"
+  ],
+  "SUNTPSF": [
+    "SUNTPSF1"
+  ],
+  "SNB1": [
+    "SNBG01",
+    "SNB01",
+    "SNBL01"
+  ],
+  "0SUPERNODE2": [
+    "SNB02",
+    "SNBL02",
+    "SNBG02"
+  ],
+  "SRSF": [
+    "SRSF1"
+  ],
+  "0SWANBBESS": [
+    "0SWANBBESS1",
+    "0SWANBBESSL1",
+    "0SWANBBESSG1"
+  ],
+  "SWAN_B": [
+    "SWAN_A_2",
+    "SWAN_B_4",
+    "MRIDGE",
+    "SWAN_A_5",
+    "SWAN_A_3",
+    "SWAN_B_3",
+    "SWAN_A_6",
+    "SWAN_A_4",
+    "SWAN_B_1",
+    "SWAN_B_2",
+    "SWAN_C",
+    "SWAN_D",
+    "SWAN_A_1"
+  ],
+  "SWAN_E": [
+    "SWAN_E"
+  ],
+  "TABMILL2": [
+    "TABMILL2"
+  ],
+  "TAHMOOR": [
+    "TAHMOOR1"
+  ],
+  "TBSF": [
+    "TBSF1"
+  ],
+  "TB2SF": [
+    "TB2B1",
+    "TB2SF1",
+    "TB2BL1",
+    "TB2BG1"
+  ],
+  "TALLAWAR": [
+    "TALWA1"
+  ],
+  "TALWB": [
+    "TALWB1"
+  ],
+  "TVCCPS": [
+    "TVCC201"
+  ],
+  "TARALGA": [
+    "TARALGA1"
+  ],
+  "0TARONGBESS": [
+    "TARBESSL1",
+    "TARBESSG1",
+    "TARBESS1"
+  ],
+  "TARONG": [
+    "TARONG#1",
+    "TARONG#2",
+    "TARONG#3",
+    "TARONG#4"
+  ],
+  "TARONGN": [
+    "TNPS1"
+  ],
+  "TARRALEA": [
+    "TARRALEA"
+  ],
+  "TATIARA": [
+    "TATIARA1"
+  ],
+  "TATURA": [
+    "TATURA01"
+  ],
+  "TEATREE": [
+    "TEATREE1"
+  ],
+  "TEMPB": [
+    "TEMPB1",
+    "TEMPBL1",
+    "TEMPBG1"
+  ],
+  "SATGN": [
+    "SATGN1"
+  ],
+  "SATGS": [
+    "SATGS1"
+  ],
+  "TERALBA": [
+    "TERALBA"
+  ],
+  "0TERANGBESS": [
+    "0TERANGBESS1",
+    "0TERANGBESSL1",
+    "0TERANGBESSG1"
+  ],
+  "TERMSTOR": [
+    "TERMSTOR"
+  ],
+  "BLUFF": [
+    "BLUFF1"
+  ],
+  "THEDROP": [
+    "THEDROP1"
+  ],
+  "0TILBSF": [
+    "0TILBSF"
+  ],
+  "TIMWEST": [
+    "TIMWEST"
+  ],
+  "0TOMAGOBESS": [
+    "0TOMAGOBESSB1",
+    "0TOMAGOBESSG1",
+    "0TOMAGOBESSL1"
+  ],
+  "TOORAWF": [
+    "TOORAWF"
+  ],
+  "TIB": [
+    "TIBG1",
+    "TIB1",
+    "TIBL1"
+  ],
+  "TORRIS": [
+    "TORRB4",
+    "TORRB3",
+    "TORRA4",
+    "TORRB2",
+    "TORRB1",
+    "TORRA1",
+    "TORRA2",
+    "TORRA3"
+  ],
+  "TOWER": [
+    "TOWER"
+  ],
+  "YABULU": [
+    "YABULU",
+    "YABULU2"
+  ],
+  "TGNSS": [
+    "TGNSS1"
+  ],
+  "TREVALLN": [
+    "TREVALLN"
+  ],
+  "TRIBUTE": [
+    "TRIBUTE",
+    "TRIBNL1"
+  ],
+  "TULLYSM": [
+    "TULLYSM1"
+  ],
+  "SNOWY2": [
+    "UPPTUMUT",
+    "SNOWY2"
+  ],
+  "TUMUT3": [
+    "SNOWYP",
+    "TUMUT3-4",
+    "TUMUT3-6",
+    "TUMUT3-5",
+    "TUMUT3-3",
+    "TUMUT3-1",
+    "TUMUT3-2",
+    "TUMUT3"
+  ],
+  "TUNGATIN": [
+    "TUNGATIN"
+  ],
+  "ULBESS": [
+    "ULPBESSL1",
+    "ULPBESS1",
+    "ULPBESSG1"
+  ],
+  "URANQ": [
+    "URANQ12",
+    "URANQ14",
+    "URANQ11",
+    "URANQ13"
+  ],
+  "0UUNGULAWF": [
+    "0UUNGULAWF"
+  ],
+  "VP": [
+    "VP6",
+    "VP5"
+  ],
+  "VPGS": [
+    "LYGS6",
+    "LYGS2",
+    "LYGS3",
+    "VPGS6",
+    "VPGS4",
+    "VPGS3",
+    "VPGS5",
+    "LYGS4",
+    "VPGS1",
+    "VPGS2",
+    "LYGS1",
+    "LYGS5",
+    "VPGS"
+  ],
+  "TITREE": [
+    "TITREE"
+  ],
+  "VICMILL": [
+    "VICMILL1"
+  ],
+  "VBB": [
+    "VBBL1",
+    "VBBG1",
+    "VBB1"
+  ],
+  "WAGGNSF": [
+    "WAGGNSF1"
+  ],
+  "WLWLSF": [
+    "WLWLSF2",
+    "WLWLSF1"
+  ],
+  "WW": [
+    "WW7",
+    "WW8"
+  ],
+  "WALGRV": [
+    "WALGRV1",
+    "WALGRVG1",
+    "WALGRVL1"
+  ],
+  "PRDSO_WALPOLE": [
+    "PRDSO_WALPOLE_HG1"
+  ],
+  "0WAMBOWF": [
+    "0WAMBOWF2",
+    "WAMBOWF1"
+  ],
+  "WANDSF": [
+    "0WANDSF2",
+    "WANDSF1"
+  ],
+  "WANDBG": [
+    "WANDBG1",
+    "WANDB1",
+    "WANDBL1"
+  ],
+  "WNSF": [
+    "WNSF1"
+  ],
+  "WTAHB": [
+    "WTAHB1G1",
+    "WTAHB1L1",
+    "WTAHB1"
+  ],
+  "WG": [
+    "WG01"
+  ],
+  "WARWSF": [
+    "WARWSF1",
+    "WARWSF2"
+  ],
+  "WATERLWF": [
+    "WATERLWF"
+  ],
+  "WPWF": [
+    "WPWF"
+  ],
+  "WAUBRAWF": [
+    "WAUBRAWF"
+  ],
+  "WELLSF1": [
+    "WELLSF1"
+  ],
+  "WELNSF": [
+    "WELNSF1"
+  ],
+  "WEMENSF1": [
+    "WEMENSF1"
+  ],
+  "WESTILLA": [
+    "WESTILL1"
+  ],
+  "WKIEWA": [
+    "WKIEWA2",
+    "WKIEWA1"
+  ],
+  "AGLNOW1": [
+    "AGLNOW1"
+  ],
+  "WSTWYSF": [
+    "WSTWYSF1"
+  ],
+  "WDBESS": [
+    "WDBESSL1",
+    "WDBESS1",
+    "WDBESSG1"
+  ],
+  "WDGPH": [
+    "WDGPH1"
+  ],
+  "WDBESS2": [
+    "WDBESS2",
+    "WDBESSG2",
+    "WDBESSL2"
+  ],
+  "WESTCBT": [
+    "WESTCBT1"
+  ],
+  "WRSF1": [
+    "WRSF1"
+  ],
+  "WRWF1": [
+    "WRWF1"
+  ],
+  "WHITSF": [
+    "WHITSF1"
+  ],
+  "WHIT1": [
+    "WHIT1"
+  ],
+  "WILGAPK": [
+    "WILGAPK"
+  ],
+  "WILGAPKB": [
+    "WILGB01"
+  ],
+  "WILLHOV": [
+    "WILLHOV1"
+  ],
+  "0WDBESS": [
+    "0WDBESS1",
+    "0WDBESSL1",
+    "0WDBESSG1"
+  ],
+  "WGWF": [
+    "WGWF1"
+  ],
+  "NINEWIL": [
+    "NINEWIL1"
+  ],
+  "WINDHILL": [
+    "WHILL1"
+  ],
+  "WINGF1": [
+    "WINGF1_1"
+  ],
+  "WINGF2": [
+    "WINGF2_1"
+  ],
+  "WINTSF1": [
+    "WINTSF1"
+  ],
+  "WIVENHOE": [
+    "W/HOE#1",
+    "PUMP1",
+    "W/HOE#2",
+    "PUMP2"
+  ],
+  "WIVENSH": [
+    "WIVENSH"
+  ],
+  "WOLARSF": [
+    "WOLARSF1"
+  ],
+  "WOLLERT": [
+    "WOLLERT1"
+  ],
+  "WONWP": [
+    "WONWP"
+  ],
+  "WDLNGN": [
+    "WDLNGN01"
+  ],
+  "WOODLWN": [
+    "WOODLWN1"
+  ],
+  "WOOLNTH1": [
+    "WOOLNTH1"
+  ],
+  "WOOLGSF": [
+    "WOOLGSF1",
+    "0WOOLGB1",
+    "0WOOLGBG1",
+    "0WOOLGBL1"
+  ],
+  "0WOORBESS": [
+    "0WESSB1",
+    "0WESSL1",
+    "0WESSG1"
+  ],
+  "WOYWOY": [
+    "WOYWOY1"
+  ],
+  "WUNUSF": [
+    "WUNUSF1"
+  ],
+  "WYASF": [
+    "WYASF1"
+  ],
+  "WYANGALA": [
+    "WYANGALA"
+  ],
+  "WYANGALB": [
+    "WYANGALB"
+  ],
+  "WYNDW": [
+    "WYNDW"
+  ],
+  "YALLOURN": [
+    "YWPS1",
+    "YWPS4",
+    "YWPS2",
+    "YWPS3"
+  ],
+  "YSWF": [
+    "YSWF1"
+  ],
+  "YAMBUK": [
+    "YAMBUKWF"
+  ],
+  "YARANSF": [
+    "YARANSF1"
+  ],
+  "YWNGAHYD": [
+    "YWNGAHYD"
+  ],
+  "YARWUN": [
+    "YARWUN_1"
+  ],
+  "YATSF1": [
+    "YATSF1"
+  ],
+  "YAWWF": [
+    "YAWWF1"
+  ],
+  "YENDONWF": [
+    "YENDWF1"
+  ]
+}
