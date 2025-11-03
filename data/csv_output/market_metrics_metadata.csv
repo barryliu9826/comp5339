@@ -1,3 +1,0 @@
-network_code,metric,unit,interval,date_start,date_end,network_timezone_offset
-NEM,price,$/MWh,5m,,,+10:00
-NEM,demand,MW,5m,,,+10:00

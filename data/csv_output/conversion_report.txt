@@ -1,9 +1,0 @@
-JSON to CSV 转换摘要报告
-==================================================
-转换时间: 2025-11-01 13:51:52
-
-facility_metrics_wide.csv: 95030 行, 6 列
-market_metrics_data.csv: 576 行, 4 列
-facility_units.csv: 884 行, 32 列
-market_metrics_metadata.csv: 2 行, 7 列
-facilities.csv: 515 行, 10 列

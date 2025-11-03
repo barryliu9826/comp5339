@@ -44,9 +44,9 @@
     "BALDHWF1"
   ],
   "BALBESS": [
-    "BALBG1",
     "BALB1",
-    "BALBL1"
+    "BALBL1",
+    "BALBG1"
   ],
   "BBASEHOS": [
     "BBASEHOS"
@@ -141,10 +141,10 @@
     "MCKAY2"
   ],
   "BOLIVAR": [
-    "BOWWBA1G",
+    "BOWWPV1",
     "BOWWBA1",
     "BOWWBA1L",
-    "BOWWPV1",
+    "BOWWBA1G",
     "BOLIVAR1"
   ],
   "BOLIVPS": [
@@ -172,16 +172,16 @@
     "BRAEMAR6"
   ],
   "BRNDBES": [
-    "BRNDBES1",
     "BRNDBESG1",
+    "BRNDBES1",
     "BRNDBESL1"
   ],
   "BROADMDW": [
     "BROADMDW"
   ],
   "0BSSF": [
-    "0BSBESS1",
     "0BSBESSL1",
+    "0BSBESS1",
     "0BSBESSG1",
     "0BSSF1"
   ],
@@ -195,9 +195,9 @@
     "BROKENH1"
   ],
   "BHB": [
-    "BHBL1",
+    "BHBG1",
     "BHB1",
-    "BHBG1"
+    "BHBL1"
   ],
   "BROOKLYN": [
     "BROOKLYN"
@@ -214,9 +214,9 @@
     "0BULABULL1"
   ],
   "BULGANA": [
-    "BULBES1",
-    "BULBESG1",
     "BULBESL1",
+    "BULBESG1",
+    "BULBES1",
     "BULGANA1"
   ],
   "0BUNDSF": [
@@ -270,9 +270,9 @@
     "CNUNDAWF"
   ],
   "CAPBES": [
+    "CAPBES1",
     "CAPBES1L",
-    "CAPBES1G",
-    "CAPBES1"
+    "CAPBES1G"
   ],
   "CAPTL_WF": [
     "CAPTL_WF"
@@ -306,13 +306,13 @@
     "CHILDSF1"
   ],
   "CHBESS": [
-    "CHBESS1",
     "CHBESSL1",
+    "CHBESS1",
     "CHBESSG1"
   ],
   "CBWWBA": [
-    "CBWWBA1G",
     "CBWWBA1",
+    "CBWWBA1G",
     "CBWWPV1",
     "CBWWBA1L",
     "CBWWBG1",
@@ -324,8 +324,8 @@
     "CLARESF1"
   ],
   "CLRKCWF": [
-    "CLRKCWF2",
-    "CLRKCWF1"
+    "CLRKCWF1",
+    "CLRKCWF2"
   ],
   "CLAYTON": [
     "CLAYTON"
@@ -371,8 +371,8 @@
   ],
   "COLONGRA": [
     "CG3",
-    "CG2",
     "CG1",
+    "CG2",
     "CG4"
   ],
   "COLUMSF": [
@@ -438,8 +438,8 @@
     "DARLSF1"
   ],
   "DPNTB": [
-    "DPNTBG1",
     "DPNTB1",
+    "DPNTBG1",
     "DPNTBL1"
   ],
   "DARTM": [
@@ -498,15 +498,15 @@
     "MOR3"
   ],
   "ERARING": [
-    "ER01",
     "ER02",
+    "ER01",
     "ER03",
     "ER04"
   ],
   "ERB": [
     "ERBL01",
-    "ERBG01",
-    "ERB01"
+    "ERB01",
+    "ERBG01"
   ],
   "ERGT01": [
     "ERGT01"
@@ -557,11 +557,11 @@
     "GIRGSF"
   ],
   "GSTONE": [
-    "GSTONE4",
-    "GSTONE5",
-    "GSTONE3",
-    "GSTONE6",
     "GSTONE1",
+    "GSTONE4",
+    "GSTONE3",
+    "GSTONE5",
+    "GSTONE6",
     "GSTONE2"
   ],
   "GLBWNHYD": [
@@ -602,8 +602,8 @@
     "0GOORESF1"
   ],
   "GORDON": [
-    "GOVILLB1",
-    "GORDON"
+    "GORDON",
+    "GOVILLB1"
   ],
   "0GRIVSF": [
     "0GRIVBESS1",
@@ -675,9 +675,9 @@
   ],
   "HVWW": [
     "HVWWBA1G",
-    "HVWWPV1",
+    "HVWWBA1L",
     "HVWWBA1",
-    "HVWWBA1L"
+    "HVWWPV1"
   ],
   "HASTING": [
     "HASTINGS1",
@@ -704,9 +704,9 @@
     "HWPS3"
   ],
   "HBESS": [
-    "HBESS1",
     "HBESSL1",
-    "HBESSG1"
+    "HBESSG1",
+    "HBESS1"
   ],
   "HEPWIND": [
     "HEPWIND1"
@@ -727,8 +727,8 @@
     "HDWF3"
   ],
   "HORNSDPR": [
-    "HPRL1",
     "HPR1",
+    "HPRL1",
     "HPRG1"
   ],
   "0HORSHAMSF": [
@@ -767,8 +767,8 @@
     "JACKSGUL"
   ],
   "JEERA": [
-    "JLA02",
     "JLA03",
+    "JLA02",
     "JLA01",
     "JLA04"
   ],
@@ -805,8 +805,8 @@
   "KAREEYA": [
     "KAREEYA4",
     "KAREEYA3",
-    "KAREEYA5",
     "KAREEYA2",
+    "KAREEYA5",
     "KAREEYA1"
   ],
   "KEEPIT": [
@@ -816,8 +816,8 @@
     "AGLSITA1"
   ],
   "KENNEDY": [
-    "KEPSF1",
     "KEPBG1",
+    "KEPSF1",
     "KEPBL1",
     "KEPWF1"
   ],
@@ -849,21 +849,21 @@
     "KKGTS"
   ],
   "KESS1": [
-    "KESSL1",
     "KESSG1",
-    "KESSB1"
+    "KESSB1",
+    "KESSL1"
   ],
   "KRCCOGEN": [
     "KRCCOGEN"
   ],
   "LADBROKE": [
-    "LADBROK1",
-    "LADBROK2"
+    "LADBROK2",
+    "LADBROK1"
   ],
   "LBBESS": [
-    "LBB1",
+    "LBBG1",
     "LBBL1",
-    "LBBG1"
+    "LBB1"
   ],
   "LKBONNY1": [
     "LKBONNY1"
@@ -881,8 +881,8 @@
     "0LANCSF1"
   ],
   "LVES": [
-    "LVESG1",
     "LVESL1",
+    "LVESG1",
     "LVES1"
   ],
   "LNGS": [
@@ -978,8 +978,8 @@
   ],
   "MANNUMB": [
     "MANNUMBG1",
-    "MANNUMBL1",
-    "MANNUMB1"
+    "MANNUMB1",
+    "MANNUMBL1"
   ],
   "MANNSF": [
     "MANNSF2"
@@ -1011,8 +1011,8 @@
   ],
   "0MREHA2": [
     "MREHA2",
-    "MREHAL2",
-    "MREHAG2"
+    "MREHAG2",
+    "MREHAL2"
   ],
   "MREHA3": [
     "MREHA3",
@@ -1055,10 +1055,10 @@
     "MOREESF1"
   ],
   "MWPS": [
-    "MWPS1PV1",
-    "MWPS4PV1",
     "MWPS2PV1",
-    "MWPS3PV1"
+    "MWPS3PV1",
+    "MWPS4PV1",
+    "MWPS1PV1"
   ],
   "0MORNBESS": [
     "0MORNBESS1",
@@ -1099,8 +1099,8 @@
     "MTMILLAR"
   ],
   "MP": [
-    "MP1",
-    "MP2"
+    "MP2",
+    "MP1"
   ],
   "MSTUART": [
     "MSTUART3",
@@ -1140,11 +1140,11 @@
     "NEVERSF1"
   ],
   "NEWENSF": [
-    "NEWENSF2",
     "0NEWENBESS1",
+    "NEWENSF1",
+    "NEWENSF2",
     "0NEWENBESSL1",
-    "0NEWENBESSG1",
-    "NEWENSF1"
+    "0NEWENBESSG1"
   ],
   "NEWPORT": [
     "NPS"
@@ -1209,9 +1209,9 @@
     "PPCCGT"
   ],
   "PIBESS": [
+    "PIBESS1",
     "PIBESSG1",
-    "PIBESSL1",
-    "PIBESS1"
+    "PIBESSL1"
   ],
   "PINDARI": [
     "PINDARI"
@@ -1220,15 +1220,15 @@
     "PIONEER"
   ],
   "PLAYF": [
+    "PLAYFB4",
     "PLAYFB2",
     "PLAYFB3",
-    "PLAYFB4",
     "PLAYB-AG",
     "PLAYFB1"
   ],
   "PTINA": [
-    "PO110NL1",
     "POAT220",
+    "PO110NL1",
     "POAT110"
   ],
   "PAREPW": [
@@ -1278,9 +1278,9 @@
     "RACOMIL1"
   ],
   "RANGEB": [
-    "RANGEB1L1",
     "RANGEB1G1",
-    "RANGEB1"
+    "RANGEB1",
+    "RANGEB1L1"
   ],
   "REDBANK1": [
     "REDBANK1"
@@ -1304,9 +1304,9 @@
     "RESS1G"
   ],
   "RIVNB": [
+    "RIVNBG2",
     "RIVNB2",
-    "RIVNBL2",
-    "RIVNBG2"
+    "RIVNBL2"
   ],
   "ROCHEDAL": [
     "ROCHEDAL"
@@ -1482,14 +1482,14 @@
   ],
   "SWAN_B": [
     "SWAN_A_2",
+    "SWAN_B_3",
     "SWAN_B_4",
     "MRIDGE",
     "SWAN_A_5",
-    "SWAN_A_3",
-    "SWAN_B_3",
     "SWAN_A_6",
     "SWAN_A_4",
     "SWAN_B_1",
+    "SWAN_A_3",
     "SWAN_B_2",
     "SWAN_C",
     "SWAN_D",
@@ -1508,8 +1508,8 @@
     "TBSF1"
   ],
   "TB2SF": [
-    "TB2B1",
     "TB2SF1",
+    "TB2B1",
     "TB2BL1",
     "TB2BG1"
   ],
@@ -1531,9 +1531,9 @@
     "TARBESS1"
   ],
   "TARONG": [
-    "TARONG#1",
     "TARONG#2",
     "TARONG#3",
+    "TARONG#1",
     "TARONG#4"
   ],
   "TARONGN": [
@@ -1595,13 +1595,13 @@
   ],
   "TIB": [
     "TIBG1",
-    "TIB1",
-    "TIBL1"
+    "TIBL1",
+    "TIB1"
   ],
   "TORRIS": [
     "TORRB4",
-    "TORRB3",
     "TORRA4",
+    "TORRB3",
     "TORRB2",
     "TORRB1",
     "TORRA1",
@@ -1622,8 +1622,8 @@
     "TREVALLN"
   ],
   "TRIBUTE": [
-    "TRIBUTE",
-    "TRIBNL1"
+    "TRIBNL1",
+    "TRIBUTE"
   ],
   "TULLYSM": [
     "TULLYSM1"
@@ -1634,13 +1634,13 @@
   ],
   "TUMUT3": [
     "SNOWYP",
+    "TUMUT3",
     "TUMUT3-4",
     "TUMUT3-6",
     "TUMUT3-5",
     "TUMUT3-3",
     "TUMUT3-1",
-    "TUMUT3-2",
-    "TUMUT3"
+    "TUMUT3-2"
   ],
   "TUNGATIN": [
     "TUNGATIN"
@@ -1667,12 +1667,12 @@
     "LYGS6",
     "LYGS2",
     "LYGS3",
+    "LYGS4",
+    "VPGS1",
     "VPGS6",
     "VPGS4",
     "VPGS3",
     "VPGS5",
-    "LYGS4",
-    "VPGS1",
     "VPGS2",
     "LYGS1",
     "LYGS5",
@@ -1686,15 +1686,15 @@
   ],
   "VBB": [
     "VBBL1",
-    "VBBG1",
-    "VBB1"
+    "VBB1",
+    "VBBG1"
   ],
   "WAGGNSF": [
     "WAGGNSF1"
   ],
   "WLWLSF": [
-    "WLWLSF2",
-    "WLWLSF1"
+    "WLWLSF1",
+    "WLWLSF2"
   ],
   "WW": [
     "WW7",
@@ -1702,8 +1702,8 @@
   ],
   "WALGRV": [
     "WALGRV1",
-    "WALGRVG1",
-    "WALGRVL1"
+    "WALGRVL1",
+    "WALGRVG1"
   ],
   "PRDSO_WALPOLE": [
     "PRDSO_WALPOLE_HG1"
@@ -1725,9 +1725,9 @@
     "WNSF1"
   ],
   "WTAHB": [
-    "WTAHB1G1",
     "WTAHB1L1",
-    "WTAHB1"
+    "WTAHB1",
+    "WTAHB1G1"
   ],
   "WG": [
     "WG01"
@@ -1768,17 +1768,17 @@
     "WSTWYSF1"
   ],
   "WDBESS": [
-    "WDBESSL1",
     "WDBESS1",
-    "WDBESSG1"
+    "WDBESSG1",
+    "WDBESSL1"
   ],
   "WDGPH": [
     "WDGPH1"
   ],
   "WDBESS2": [
+    "WDBESSL2",
     "WDBESS2",
-    "WDBESSG2",
-    "WDBESSL2"
+    "WDBESSG2"
   ],
   "WESTCBT": [
     "WESTCBT1"
@@ -1855,10 +1855,10 @@
     "WOOLNTH1"
   ],
   "WOOLGSF": [
-    "WOOLGSF1",
     "0WOOLGB1",
     "0WOOLGBG1",
-    "0WOOLGBL1"
+    "0WOOLGBL1",
+    "WOOLGSF1"
   ],
   "0WOORBESS": [
     "0WESSB1",
@@ -1884,10 +1884,10 @@
     "WYNDW"
   ],
   "YALLOURN": [
-    "YWPS1",
     "YWPS4",
-    "YWPS2",
-    "YWPS3"
+    "YWPS1",
+    "YWPS3",
+    "YWPS2"
   ],
   "YSWF": [
     "YSWF1"

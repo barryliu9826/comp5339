@@ -1,0 +1,14 @@
+# Logs
+logs/
+
+# Large data files to avoid pushing to GitHub size limit
+/data/facility_units_metrics.json
+/data/facility_metrics.json
+
+# Generated CSV outputs (can be regenerated)
+/data/csv_output/
+
+# Python cache
+__pycache__/
+*.pyc
+.DS_Store

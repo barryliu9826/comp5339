@@ -15,6 +15,9 @@ plotly>=5.18.0
 # Data Processing
 pandas>=2.1.0
 
+# OpenElectricity SDK
+openelectricity
+
 # Utilities
 python-dotenv>=1.0.0
 
