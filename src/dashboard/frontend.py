@@ -819,6 +819,10 @@ market_state_manager = MarketStateManager(max_history=None)
 # WebSocket client
 websocket_client: WebSocketClient | None = None
 
+# Add charts state store ids
+app.server.config["charts_snapshot"] = {}
+app.server.config["charts_latest"] = {}
+
 
 # ========== WebSocket message handling ==========
 def websocket_message_handler(message: dict) -> None:
@@ -852,6 +856,12 @@ def websocket_message_handler(message: dict) -> None:
         if metrics:
             market_state_manager.update_metrics_batch(metrics)
             logger.info(f"Loaded initial market data: {len(metrics)} networks")
+    elif message_type == "initial_charts":
+        # Store snapshot to Dash Store via clientside trigger (global temp cache)
+        app.server.config["charts_snapshot"] = data
+    elif message_type == "charts_update":
+        # Update the latest charts payload in server memory; Dash callbacks pull every second
+        app.server.config["charts_latest"] = data
 
 
 def setup_websocket_client() -> None:
@@ -920,6 +930,7 @@ app.layout = html.Div(
         # State storage
         dcc.Store(id="facilities-store", data={}),
         dcc.Store(id="market-metrics-store", data={}),
+        dcc.Store(id="charts-store", data={}),
         
         # Title
         html.H1("Electricity Facility Dashboard", style={"padding": "20px", "textAlign": "center"}),
@@ -1015,6 +1026,31 @@ app.layout = html.Div(
                                     "minHeight": "500px",
                                     "padding": "20px",
                                 },
+                            ),
+                        ],
+                    ),
+                ),
+                
+                # Tab 3: Facilities charts
+                dcc.Tab(
+                    label="Facilities charts",
+                    value="tab-facilities-charts",
+                    children=html.Div(
+                        [
+                            html.H2("Facilities Charts", style={"padding": "20px", "textAlign": "center"}),
+                            html.Div(
+                                [
+                                    html.Div(dcc.Graph(id="fac-line-chart"), style={"flex": "1", "minHeight": "350px"}),
+                                    html.Div(dcc.Graph(id="fac-donut-chart"), style={"flex": "1", "minHeight": "350px"}),
+                                ],
+                                style={"display": "flex", "gap": "20px", "padding": "10px"},
+                            ),
+                            html.Div(
+                                [
+                                    html.Div(dcc.Graph(id="fac-region-bar"), style={"flex": "1", "minHeight": "400px"}),
+                                    html.Div(dcc.Graph(id="fac-topn-bar"), style={"flex": "1", "minHeight": "400px"}),
+                                ],
+                                style={"display": "flex", "gap": "20px", "padding": "10px"},
                             ),
                         ],
                     ),
@@ -1476,6 +1512,75 @@ def update_market_charts(
     )
     
     return charts_container
+
+
+@app.callback(
+    Output("charts-store", "data"),
+    Input("interval-component", "n_intervals"),
+    State("charts-store", "data"),
+)
+def pull_charts_state(n: int, current: dict) -> dict:
+    """Pull latest charts payload delivered via WS and cached on server."""
+    latest = app.server.config.get("charts_latest") or app.server.config.get("charts_snapshot")
+    return latest or current or {}
+
+
+@app.callback(
+    Output("fac-line-chart", "figure"),
+    Output("fac-donut-chart", "figure"),
+    Output("fac-region-bar", "figure"),
+    Output("fac-topn-bar", "figure"),
+    Input("charts-store", "data"),
+    Input("main-tabs", "value"),
+)
+def render_facilities_charts(charts: dict, current_tab: str):
+    """Render four facilities charts from charts-store (line, donut, region bar, Top-10 bar)."""
+    import plotly.graph_objects as go
+    
+    if current_tab != "tab-facilities-charts" or not charts:
+        return go.Figure(), go.Figure(), go.Figure(), go.Figure()
+    
+    # Line
+    line_fig = go.Figure()
+    for series in charts.get("line", []):
+        xs = [pt.get("t") for pt in series.get("points", [])]
+        ys = [pt.get("v") for pt in series.get("points", [])]
+        raw_name = series.get("name")
+        if raw_name == "total_power":
+            trace_name = "Total Power (MW)"
+        elif raw_name == "total_emissions":
+            trace_name = "Total Emissions (t)"
+        else:
+            trace_name = raw_name
+        line_fig.add_trace(go.Scatter(x=xs, y=ys, mode="lines", name=trace_name))
+    line_fig.update_layout(title="Total Power & Emissions", template="plotly_white")
+    
+    # Donut
+    labels = [s.get("fuel") for s in charts.get("donut", [])]
+    values = [s.get("power", 0.0) for s in charts.get("donut", [])]
+    donut_fig = go.Figure(go.Pie(labels=labels, values=values, hole=0.5, name="Power (MW)"))
+    donut_fig.update_layout(title="Power Share by Fuel", template="plotly_white")
+    
+    # Region bar (power & emissions side-by-side for each region)
+    regions_raw = [item.get("region") for item in charts.get("bar_by_region", [])]
+    regions = [REGION_DISPLAY_MAP.get(r, r) for r in regions_raw]
+    power_vals = [item.get("power", 0.0) for item in charts.get("bar_by_region", [])]
+    emissions_vals = [item.get("emissions", 0.0) for item in charts.get("bar_by_region", [])]
+    region_bar = go.Figure()
+    region_bar.add_trace(go.Bar(x=regions, y=power_vals, name="Power (MW)", marker_color="#1f77b4"))
+    region_bar.add_trace(go.Bar(x=regions, y=emissions_vals, name="Emissions (t)", marker_color="#ff7f0e"))
+    region_bar.update_layout(barmode="group", title="By Region: Power & Emissions", template="plotly_white", xaxis_title="Region")
+    
+    # Top-10 facilities bar (sorted by power desc)
+    names = [item.get("name") for item in charts.get("bar_top_facilities", [])]
+    top_power = [item.get("power", 0.0) for item in charts.get("bar_top_facilities", [])]
+    top_emissions = [item.get("emissions", 0.0) for item in charts.get("bar_top_facilities", [])]
+    top_bar = go.Figure()
+    top_bar.add_trace(go.Bar(x=names, y=top_power, name="Power (MW)", marker_color="#2ca02c"))
+    top_bar.add_trace(go.Bar(x=names, y=top_emissions, name="Emissions (t)", marker_color="#d62728"))
+    top_bar.update_layout(barmode="group", title="Top-10 Facilities: Power & Emissions", template="plotly_white", xaxis_title="Facility")
+    
+    return line_fig, donut_fig, region_bar, top_bar
 
 
 # ========== Main program entry ==========

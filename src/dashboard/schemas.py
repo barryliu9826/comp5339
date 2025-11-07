@@ -121,3 +121,68 @@ class MarketUpdate(BaseModel):
             }
         }
 
+
+# ========== Charts payload models ==========
+class LinePoint(BaseModel):
+    """Single point for line series."""
+    
+    t: str
+    v: float
+
+
+class LineSeries(BaseModel):
+    """Line series definition."""
+    
+    name: str
+    points: list[LinePoint]
+
+
+class DonutSlice(BaseModel):
+    """Donut slice by fuel technology."""
+    
+    fuel: str
+    power: float
+
+
+class RegionBarItem(BaseModel):
+    """Bar item aggregated by network region."""
+    
+    region: str
+    power: float
+    emissions: float
+
+
+class FacilityBarItem(BaseModel):
+    """Bar item for top facilities by power/emissions."""
+    
+    facility_id: str
+    name: str
+    power: float
+    emissions: float
+
+
+class ChartsPayload(BaseModel):
+    """Composite charts payload for facilities charts."""
+    
+    generated_at: str
+    window_minutes: int
+    filters_applied: dict | None = None
+    line: list[LineSeries]
+    donut: list[DonutSlice]
+    bar_by_region: list[RegionBarItem]
+    bar_top_facilities: list[FacilityBarItem]
+
+
+class ChartsUpdate(BaseModel):
+    """Charts update envelope for WebSocket push."""
+    
+    type: str = "charts_update"
+    data: ChartsPayload
+
+
+class ChartsInitial(BaseModel):
+    """Initial charts snapshot envelope for WS/REST."""
+    
+    type: str = "initial_charts"
+    data: ChartsPayload
+

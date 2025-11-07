@@ -627,6 +627,128 @@ mqtt_subscriber: MQTTSubscriber | None = None
 market_mqtt_subscriber: MQTTSubscriber | None = None
 _global_event_loop: asyncio.AbstractEventLoop | None = None
 
+# ========== Charts aggregation ==========
+class ChartsAggregator:
+    """Aggregate facilities data to chart-ready payloads."""
+    
+    def __init__(self, state: StateManager, window_minutes: int = 30) -> None:
+        """Initialize aggregator with ring buffers for time series.
+        
+        Args:
+            state: Facilities state manager
+            window_minutes: Sliding window length for line charts
+        """
+        self._state = state
+        self._window_minutes = window_minutes
+        self._line_total_power: list[tuple[str, float]] = []
+        self._line_total_emissions: list[tuple[str, float]] = []
+        self._top_n: int = 10
+    
+    def _trim(self, series: list[tuple[str, float]]) -> None:
+        """Trim series to the configured time window."""
+        if not series:
+            return
+        try:
+            cutoff = datetime.utcnow().timestamp() - self._window_minutes * 60
+            kept: list[tuple[str, float]] = []
+            for t, v in series:
+                try:
+                    ts = datetime.fromisoformat(t.replace("Z", "+00:00")).timestamp()
+                except Exception:
+                    ts = cutoff
+                if ts >= cutoff:
+                    kept.append((t, v))
+            series[:] = kept
+        except Exception:
+            series.clear()
+    
+    def build_payload(self, filters: Optional[dict] = None) -> dict:
+        """Build composite charts payload based on current facilities snapshot."""
+        facilities = self._state.get_all_facilities()
+        if filters:
+            regions = filters.get("regions") or []
+            fuels = filters.get("fuel_types") or []
+            if regions or fuels:
+                filtered: Dict[str, dict] = {}
+                for fid, f in facilities.items():
+                    md = f.get("metadata", {})
+                    if regions and md.get("network_region") not in regions:
+                        continue
+                    if fuels and md.get("fuel_technology") not in fuels:
+                        continue
+                    filtered[fid] = f
+                facilities = filtered
+        total_power = 0.0
+        total_emissions = 0.0
+        by_fuel: Dict[str, float] = {}
+        # Region bars aggregation
+        by_region: Dict[str, dict] = {}
+        # Collect facilities for Top-10
+        facilities_list: list[tuple[str, str, float, float]] = []  # (id, name, power, emissions)
+        now_iso = datetime.utcnow().isoformat() + "Z"
+        for fid, f in facilities.items():
+            p = float(f.get("power", 0.0) or 0.0)
+            e = float(f.get("emissions", 0.0) or 0.0)
+            md = f.get("metadata", {})
+            fuel = str(md.get("fuel_technology", "Unknown"))
+            region = str(md.get("network_region", "Unknown"))
+            name = str(md.get("name", fid))
+            total_power += p
+            total_emissions += e
+            by_fuel[fuel] = by_fuel.get(fuel, 0.0) + p
+            # Region aggregate
+            if region not in by_region:
+                by_region[region] = {"power": 0.0, "emissions": 0.0}
+            by_region[region]["power"] += p
+            by_region[region]["emissions"] += e
+            facilities_list.append((fid, name, p, e))
+        # Append to line buffers and trim
+        self._line_total_power.append((now_iso, total_power))
+        self._line_total_emissions.append((now_iso, total_emissions))
+        self._trim(self._line_total_power)
+        self._trim(self._line_total_emissions)
+        # Build line series
+        line = [
+            {
+                "name": "total_power",
+                "points": [{"t": t, "v": v} for (t, v) in self._line_total_power],
+            },
+            {
+                "name": "total_emissions",
+                "points": [{"t": t, "v": v} for (t, v) in self._line_total_emissions],
+            },
+        ]
+        # Donut slices
+        donut = [{"fuel": k, "power": v} for k, v in sorted(by_fuel.items())]
+        # Bars by region
+        bar_by_region = [
+            {"region": r, "power": vals["power"], "emissions": vals["emissions"]}
+            for r, vals in sorted(by_region.items())
+        ]
+        # Top-10 facilities by power
+        facilities_list.sort(key=lambda x: x[2], reverse=True)
+        top = facilities_list[: self._top_n]
+        bar_top_facilities = [
+            {"facility_id": fid, "name": name, "power": p, "emissions": e}
+            for fid, name, p, e in top
+        ]
+        # Compose payload
+        payload = {
+            "generated_at": now_iso,
+            "window_minutes": self._window_minutes,
+            "filters_applied": filters or {},
+            "line": line,
+            "donut": donut,
+            "bar_by_region": bar_by_region,
+            "bar_top_facilities": bar_top_facilities,
+        }
+        return payload
+
+
+charts_aggregator: ChartsAggregator | None = None
+_charts_task: asyncio.Task | None = None
+_charts_filters: dict | None = None
+
 
 # ========== Initialization functions ==========
 def setup_metadata_loader() -> MetadataLoader:
@@ -774,6 +896,18 @@ async def lifespan(app: FastAPI):
     market_mqtt_subscriber = setup_market_mqtt_subscriber()
     market_mqtt_subscriber.start()
     
+    # Start charts aggregator task
+    global charts_aggregator, _charts_task
+    charts_aggregator = ChartsAggregator(state_manager, window_minutes=30)
+    async def charts_loop() -> None:
+        """Periodic aggregation and WS broadcast for charts."""
+        while True:
+            payload = charts_aggregator.build_payload(filters=_charts_filters or {})
+            message = {"type": "charts_update", "data": payload}
+            await websocket_manager.broadcast(message)
+            await asyncio.sleep(1)
+    _charts_task = asyncio.create_task(charts_loop())
+    
     logger.info("FastAPI application started")
     
     yield
@@ -784,6 +918,12 @@ async def lifespan(app: FastAPI):
         market_mqtt_subscriber.stop()
     if mqtt_subscriber:
         mqtt_subscriber.stop()
+    if _charts_task:
+        _charts_task.cancel()
+        try:
+            await _charts_task
+        except Exception:
+            pass
     _global_event_loop = None
 
 
@@ -890,6 +1030,15 @@ async def get_market_metric(network_code: str, metric: str) -> dict:
     return metric_data
 
 
+@app.get("/api/charts/snapshot")
+async def get_charts_snapshot() -> dict:
+    """Return current charts snapshot for initialization."""
+    if charts_aggregator is None:
+        return {"error": "Charts aggregator not initialized"}
+    payload = charts_aggregator.build_payload(filters=_charts_filters or {})
+    return {"type": "initial_charts", "data": payload}
+
+
 @app.websocket("/ws/realtime")
 async def websocket_endpoint(websocket: WebSocket) -> None:
     """
@@ -916,6 +1065,11 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
             data={"metrics": market_metrics},
         )
         await websocket_manager.send_personal_message(market_initial_message.model_dump(), websocket)
+        
+        # Send initial charts snapshot
+        if charts_aggregator is not None:
+            charts_payload = charts_aggregator.build_payload(filters=_charts_filters or {})
+            await websocket_manager.send_personal_message({"type": "initial_charts", "data": charts_payload}, websocket)
         
         # Keep connected and process client messages
         while True:

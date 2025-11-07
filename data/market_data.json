@@ -1,6 +1,6 @@
 {
   "version": "4.3.0",
-  "created_at": "2025-11-03 19:57:06+11:00",
+  "created_at": "2025-11-07 18:10:00+11:00",
   "success": true,
   "error": null,
   "data": [
@@ -16183,5 +16183,5 @@
   ],
   "total_records": null,
   "data_type": "market",
-  "processed_at": "2025-11-03T19:57:06.840083"
+  "processed_at": "2025-11-07T18:10:00.908236"
 }
